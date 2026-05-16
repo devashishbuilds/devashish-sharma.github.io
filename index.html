@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Devashish Sharma — Automation & Robotics Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a0b0e;
+    --bg2: #111318;
+    --bg3: #1a1c23;
+    --accent: #e8a020;
+    --accent2: #f4c55a;
+    --text: #e8e6e0;
+    --text-muted: #7a7870;
+    --text-dim: #4a4840;
+    --border: rgba(232,160,32,0.15);
+    --border-dim: rgba(255,255,255,0.06);
+    --mono: 'Space Mono', monospace;
+    --display: 'Syne', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--display);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,160,32,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,160,32,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(10,11,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 4rem 4rem;
+    z-index: 1;
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  h1 .accent-line {
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    background: transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(232,160,32,0.05);
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0a0b0e;
+  }
+
+  .btn-primary:hover {
+    background: var(--accent2);
+    border-color: var(--accent2);
+    color: #0a0b0e;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  .scroll-line {
+    width: 48px;
+    height: 1px;
+    background: var(--text-dim);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent);
+    animation: scrollAnim 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollAnim {
+    0% { left: -100%; }
+    50% { left: 0; }
+    100% { left: 100%; }
+  }
+
+  .hero-stats {
+    position: absolute;
+    right: 4rem;
+    bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: right;
+  }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 4rem;
+  }
+
+  section + section {
+    border-top: 1px solid var(--border-dim);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+
+  /* ── ABOUT ── */
+  #about .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--border-dim);
+    background: var(--bg2);
+  }
+
+  .meta-key {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-width: 90px;
+    padding-top: 0.1rem;
+  }
+
+  .meta-val {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* ── SKILLS ── */
+  #skills .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-group {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+
+  .skill-group:hover { border-color: var(--border); }
+
+  .skill-group-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    border: 1px solid var(--border-dim);
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── EDUCATION ── */
+  #education .edu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    transition: border-color 0.2s;
+  }
+
+  .edu-card:hover { border-color: var(--border); }
+
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    padding-top: 0.2rem;
+  }
+
+  .edu-degree {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .edu-school {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+  }
+
+  .edu-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    margin-top: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience .exp-timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .exp-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border-dim);
+  }
+
+  .exp-item {
+    position: relative;
+    padding: 0 0 3rem 2.5rem;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 0.5rem;
+    width: 9px;
+    height: 9px;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-role {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+
+  .exp-org {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    position: relative;
+    padding-left: 1.2rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 1rem;
+  }
+
+  /* ── PROJECTS ── */
+  #projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+
+  .project-card:hover {
+    border-color: var(--border);
+    transform: translateY(-2px);
+  }
+
+  .project-img-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .project-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .project-card:hover .project-img-wrap img {
+    transform: scale(1.04);
+  }
+
+  .project-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .project-img-placeholder svg {
+    width: 36px;
+    height: 36px;
+    opacity: 0.4;
+  }
+
+  .project-img-placeholder span {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  .project-body {
+    padding: 1.5rem;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .project-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    border: 1px solid var(--border);
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.06em;
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .project-add-desc {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  /* ── PUBLICATIONS ── */
+  #publications .pub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .pub-card {
+    padding: 1.5rem 2rem;
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    border-left: 3px solid var(--accent);
+    transition: border-right-color 0.2s;
+  }
+
+  .pub-card:hover {
+    border-color: var(--border);
+    border-left-color: var(--accent);
+  }
+
+  .pub-venue {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .pub-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+  }
+
+  .pub-authors {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .pub-authors strong {
+    color: var(--accent2);
+  }
+
+  /* ── CONTACT ── */
+  #contact .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .contact-text {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg2);
+    border: 1px solid var(--border-dim);
+    text-decoration: none;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--border);
+    color: var(--accent);
+    background: rgba(232,160,32,0.04);
+  }
+
+  .contact-link-type {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    min-width: 55px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 0.06em;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    #hero { padding: 7rem 1.5rem 6rem; }
+    .hero-stats { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #about .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    #contact .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .edu-card { grid-template-columns: 1fr; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    #projects .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#hero" class="nav-logo">DS_portfolio.exe</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <p class="hero-label">Automation &amp; Robotics Engineer</p>
+  <h1>
+    Devashish
+    <span class="accent-line">Sharma.</span>
+  </h1>
+  <p class="hero-sub">
+    MSc Automation Engineering @ University of Bologna.
+    Building hardware that works — from snake robots to sensor testbenches.
+    ICRA 2025 · IFAC 2026.
+  </p>
+  <div class="hero-links">
+    <a href="mailto:devashish.sharma@studio.unibo.it" class="btn btn-primary">Get in touch ↗</a>
+    <a href="https://www.linkedin.com/in/devashish-sharma-15aaa0153" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+    <a href="https://github.com/" target="_blank" rel="noopener" class="btn">GitHub</a>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    scroll
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Publications</div>
+    </div>
+    <div>
+      <div class="stat-num">4+</div>
+      <div class="stat-label">Years R&amp;D</div>
+    </div>
+    <div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Institutions</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">01 //</span>
+    <h2>About</h2>
+  </div>
+  <div class="about-grid fade-up">
+    <div class="about-text">
+      <p>
+        I'm a Master's student in Automation Engineering at the University of Bologna with a strong foundation in mechanical testing, experimental design, and electromechanical system development — built across robotics research at IIT Bombay, DRDO, and industrial internships.
+      </p>
+      <p>
+        My work lives at the intersection of hardware and data: designing structured test methods, building prototypes, and making sense of the numbers they produce. I've contributed to two peer-reviewed conference publications and have hands-on experience across the full prototype-to-validation pipeline.
+      </p>
+      <p>
+        Currently seeking internship opportunities across Europe (available from September 2026) where I can contribute to meaningful engineering challenges and grow as an experimental/reliability engineer.
+      </p>
+    </div>
+    <div class="about-meta">
+      <div class="meta-row">
+        <span class="meta-key">Location</span>
+        <span class="meta-val">Bologna, Italy</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">Degree</span>
+        <span class="meta-val">MSc Automation Engineering, Università di Bologna</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">Email</span>
+        <span class="meta-val">devashish.sharma@studio.unibo.it</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">Available</span>
+        <span class="meta-val">September 2026 — Open to relocation across Europe</span>
+      </div>
+      <div class="meta-row">
+        <span class="meta-key">Languages</span>
+        <span class="meta-val">English (Fluent) · Hindi (Native) · Italian (Learning)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">02 //</span>
+    <h2>Technical Skills</h2>
+  </div>
+  <div class="skills-grid fade-up">
+    <div class="skill-group">
+      <div class="skill-group-label">Mechanical Tools</div>
+      <div class="skill-tags">
+        <span class="tag">SolidWorks</span>
+        <span class="tag">AutoCAD</span>
+        <span class="tag">Fusion 360</span>
+        <span class="tag">Ansys</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Design &amp; Manufacturing</div>
+      <div class="skill-tags">
+        <span class="tag">DFM</span>
+        <span class="tag">Tolerance-Aware Design</span>
+        <span class="tag">FDM / SLA Printing</span>
+        <span class="tag">Prototype-to-Production</span>
+        <span class="tag">BOM Management</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Testing &amp; Validation</div>
+      <div class="skill-tags">
+        <span class="tag">Experimental Design</span>
+        <span class="tag">Functional Testing</span>
+        <span class="tag">Root-Cause Analysis</span>
+        <span class="tag">Repeatability Analysis</span>
+        <span class="tag">Issue Tracking</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Automation &amp; Control</div>
+      <div class="skill-tags">
+        <span class="tag">PLC Programming</span>
+        <span class="tag">TwinCAT</span>
+        <span class="tag">Automation Studio</span>
+        <span class="tag">MATLAB/Simulink</span>
+        <span class="tag">PLECS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Data &amp; Programming</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">C++</span>
+        <span class="tag">MATLAB</span>
+        <span class="tag">Excel</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Robotics</div>
+      <div class="skill-tags">
+        <span class="tag">ROS</span>
+        <span class="tag">Computer Vision</span>
+        <span class="tag">Kinematics</span>
+        <span class="tag">Locomotion Research</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EDUCATION ── -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">03 //</span>
+    <h2>Education</h2>
+  </div>
+  <div class="edu-list fade-up">
+    <div class="edu-card">
+      <div class="edu-year">Nov 2024 – Present</div>
+      <div>
+        <h3>Master's in Automation Engineering</h3>
+        <div class="edu-degree">Alma Mater Studiorum – Università di Bologna</div>
+        <div class="edu-school">Bologna, Italy</div>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2020 – 2024</div>
+      <div>
+        <h3>B.Tech in Mechatronics Engineering</h3>
+        <div class="edu-degree">Hindustan Institute of Technology and Science</div>
+        <div class="edu-school">Chennai, India</div>
+        <span class="edu-badge">CGPA: 9.71 / 10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">04 //</span>
+    <h2>Experience</h2>
+  </div>
+  <div class="exp-timeline fade-up">
+
+    <div class="exp-item">
+      <div class="exp-date">Oct 2025 – Dec 2025</div>
+      <div class="exp-role">Automation &amp; Manufacturing Intern</div>
+      <div class="exp-org">University of Bologna – Montecuccolino Laboratory · Bologna, Italy</div>
+      <ul class="exp-bullets">
+        <li>Designed and conducted experiments for robotics testbench calibration, sensor validation and repeatability analysis, including 3D modelling and FDM fabrication.</li>
+        <li>Characterised performance and reliability of electromechanical prototypes against defined specifications, including repeatability and deviation analysis.</li>
+        <li>Defined structured test procedures and validation workflows; documented results and failure modes for engineering review.</li>
+        <li>Implemented control algorithms in TwinCAT for system verification.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jan 2024 – Nov 2024</div>
+      <div class="exp-role">Research Intern → Project Associate</div>
+      <div class="exp-org">Indian Institute of Technology (IIT) Bombay · Mumbai, India</div>
+      <ul class="exp-bullets">
+        <li>Designed and fabricated mechanical hardware for a snake-like robot using SolidWorks, FDM, and SLA 3D printing.</li>
+        <li>Developed mechanical test methods to evaluate link durability, motor coupling reliability, and structural performance under varying torque conditions.</li>
+        <li>Designed experimental procedures to verify actuator specs including torque behaviour and repeatability.</li>
+        <li>Built Python scripts for sensor/actuator data logging, performance evaluation, and experimental visualisation.</li>
+        <li>Conducted repeatability and robustness testing, performing structured root-cause analysis on functional deviations.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jun 2023 – Aug 2023</div>
+      <div class="exp-role">Research Intern – Robotics &amp; Computer Vision</div>
+      <div class="exp-org">Centre for Artificial Intelligence &amp; Robotics (CAIR), DRDO · Bangalore, India</div>
+      <ul class="exp-bullets">
+        <li>Conducted an in-depth literature survey on dual-arm serial manipulators (ABB YuMi) for vision-based grasp pose estimation.</li>
+        <li>Analysed grasp planning strategies integrating robotic kinematics and computer vision methods.</li>
+        <li>Studied perception-driven manipulation approaches for improving grasp reliability in robotic systems.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jun 2022 – Nov 2022</div>
+      <div class="exp-role">Engineering Intern – Robotics, Simulation &amp; Assembly</div>
+      <div class="exp-org">AtumX · Chennai, India</div>
+      <ul class="exp-bullets">
+        <li>Designed mechanical components in SolidWorks and manufactured parts using additive and subtractive processes.</li>
+        <li>Managed component lists and assembly documentation, supporting accurate BOM tracking throughout the development lifecycle.</li>
+        <li>Collaborated with cross-functional teams to validate design assumptions and resolve feasibility issues before physical prototyping.</li>
+        <li>Used ROS for robot simulation and motion validation to support design verification prior to hardware build.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">05 //</span>
+    <h2>Projects</h2>
+  </div>
+  <div class="projects-grid fade-up">
+
+    <!-- Project 1: Snake Robot -->
+    <div class="project-card">
+      <div class="project-img-wrap">
+        <!-- REPLACE: add src="images/snake-robot.jpg" to the img tag below and delete the placeholder div -->
+        <div class="project-img-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.5"/><circle cx="8.5" cy="10" r="1.5" stroke-width="1.5"/><path d="M21 15l-5-5-5 5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Add project image</span>
+        </div>
+        <!-- <img src="images/snake-robot.jpg" alt="Snake Robot" /> -->
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">IIT Bombay</span>
+          <span class="project-tag">ICRA 2025</span>
+          <span class="project-tag">IFAC 2026</span>
+        </div>
+        <div class="project-title">Adaptive Snake Robot</div>
+        <p class="project-desc">
+          Designed and fabricated mechanical hardware for a snake-like robot capable of adaptive concertina locomotion through channels of varying width. Contributed to two peer-reviewed publications at ICRA 2025 and IFAC 2026.
+        </p>
+        <!-- ADD YOUR DESCRIPTION HERE -->
+        <p class="project-add-desc">[ Add additional description / demo video link here ]</p>
+      </div>
+    </div>
+
+    <!-- Project 2: Knee Rehabilitation Robot -->
+    <div class="project-card">
+      <div class="project-img-wrap">
+        <div class="project-img-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.5"/><circle cx="8.5" cy="10" r="1.5" stroke-width="1.5"/><path d="M21 15l-5-5-5 5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Add project image</span>
+        </div>
+        <!-- <img src="images/knee-robot.jpg" alt="Knee Rehabilitation Robot" /> -->
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">IJRA 2024</span>
+          <span class="project-tag">Medical Robotics</span>
+        </div>
+        <div class="project-title">Knee Rehabilitation Robot</div>
+        <p class="project-desc">
+          Designed and developed a mechanical assistive device for home-based knee rehabilitation: component design, material selection, prototype fabrication, and mechanical validation to verify performance against defined requirements. Published in IAES IJRA Vol.13.
+        </p>
+        <p class="project-add-desc">[ Add additional description / demo video link here ]</p>
+      </div>
+    </div>
+
+    <!-- Project 3: Robotic Disinfectant System -->
+    <div class="project-card">
+      <div class="project-img-wrap">
+        <div class="project-img-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.5"/><circle cx="8.5" cy="10" r="1.5" stroke-width="1.5"/><path d="M21 15l-5-5-5 5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Add project image</span>
+        </div>
+        <!-- <img src="images/disinfectant-robot.jpg" alt="Robotic Disinfectant System" /> -->
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">Autonomous Systems</span>
+          <span class="project-tag">AtumX</span>
+        </div>
+        <div class="project-title">Robotic Disinfectant System</div>
+        <p class="project-desc">
+          Designed and assembled an autonomous electromechanical platform integrating obstacle avoidance and surface disinfection capabilities. Supported prototype builds, mechanical assembly, and process stabilisation across development iterations.
+        </p>
+        <p class="project-add-desc">[ Add additional description / demo video link here ]</p>
+      </div>
+    </div>
+
+    <!-- Project 4: Testbench Calibration -->
+    <div class="project-card">
+      <div class="project-img-wrap">
+        <div class="project-img-placeholder">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.5"/><circle cx="8.5" cy="10" r="1.5" stroke-width="1.5"/><path d="M21 15l-5-5-5 5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span>Add project image</span>
+        </div>
+        <!-- <img src="images/testbench.jpg" alt="Testbench Calibration" /> -->
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="project-tag">UniBO</span>
+          <span class="project-tag">TwinCAT</span>
+          <span class="project-tag">Sensor Validation</span>
+        </div>
+        <div class="project-title">Robotics Testbench Calibration</div>
+        <p class="project-desc">
+          Designed and ran calibration experiments for a robotics testbench at the Montecuccolino Lab. Included 3D modelling, FDM fabrication, sensor validation, repeatability analysis, and control algorithm implementation in TwinCAT.
+        </p>
+        <p class="project-add-desc">[ Add additional description / demo video link here ]</p>
+      </div>
+    </div>
+
+    <!-- BLANK SLOT — add more projects here following the same pattern -->
+
+  </div>
+</section>
+
+<!-- ── PUBLICATIONS ── -->
+<section id="publications">
+  <div class="section-header">
+    <span class="section-num">06 //</span>
+    <h2>Publications</h2>
+  </div>
+  <div class="pub-list fade-up">
+
+    <div class="pub-card">
+      <div class="pub-venue">IFAC World Congress 2026 · Busan, South Korea</div>
+      <div class="pub-title">A Multi-Gait Strategy for Adaptive Concertina Locomotion in a Snake Robot Navigating Through Channels of Varying Width</div>
+      <div class="pub-authors">J. Koley*, <strong>D. Sharma</strong>, D. Chakraborty, H. K. Pillai — Accepted, August 2026</div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-venue">IEEE ICRA 2025 · Atlanta, GA, USA</div>
+      <div class="pub-title">Adaptive Concertina Locomotion of a Robotic Snake through Narrow Uncertain Channels</div>
+      <div class="pub-authors">J. Koley, <strong>D. Sharma</strong>, D. Chakraborty, H. K. Pillai — Proceedings pp. 12296–12302</div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-venue">IAES International Journal of Robotics and Automation · Vol. 13, Issue 4, 2024</div>
+      <div class="pub-title">Design and Development of Knee Rehabilitation Robot</div>
+      <div class="pub-authors"><strong>D. Sharma</strong>, S. A. Shaik, S. Rajagopal, M. Mohan, K. C. Ramanathan, P. K. Lingampally</div>
+    </div>
+
+    <div class="pub-card">
+      <div class="pub-venue">AIP Publishing · IV International Scientific Forum WFCES II 2022</div>
+      <div class="pub-title">Design and Evaluation of Various Knee Assistive Mechanisms for Rehabilitation</div>
+      <div class="pub-authors"><strong>D. Sharma</strong>, S. Shaik, H. Parab, R. Saran, M. Mohan, P. Lingampally, K. Ramanathan, A. Selvakumar</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">07 //</span>
+    <h2>Contact</h2>
+  </div>
+  <div class="contact-grid fade-up">
+    <div class="contact-text">
+      <p>
+        I'm actively looking for internship opportunities across Europe starting September 2026, ideally roles in reliability engineering, experimental characterisation, mechanical design, or automation — where the work can double as a thesis project.
+      </p>
+      <p style="margin-top: 1rem;">
+        Whether you're at a company I should know about, or just want to connect around robotics and automation — reach out.
+      </p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:devashish.sharma@studio.unibo.it" class="contact-link">
+        <span class="contact-link-type">Email</span>
+        devashish.sharma@studio.unibo.it
+      </a>
+      <a href="https://www.linkedin.com/in/devashish-sharma-15aaa0153" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-type">LinkedIn</span>
+        devashish-sharma-15aaa0153
+      </a>
+      <a href="https://github.com/" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-link-type">GitHub</span>
+        github.com/YOUR_USERNAME
+      </a>
+      <a href="tel:+393517384464" class="contact-link">
+        <span class="contact-link-type">Phone</span>
+        +39 351 738 4464
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 Devashish Sharma · Bologna, Italy</p>
+  <p>Built with HTML · Deployed on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
