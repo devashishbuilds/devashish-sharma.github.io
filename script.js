@@ -1,207 +1,115 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+const conveyor = document.getElementById("conveyor");
+const statusText = document.getElementById("statusText");
+
+let currentSection = null;
+let isMoving = false; // Prevents overlapping animations
+
+// Conveyor slide positions (box width 120 + gap 80 = 200px steps)
+const positions = {
+  education: 0,
+  projects: -200,
+  experience: -400,
+  skills: -600,
+  contact: -800
+};
+
+// Robot Arm Kinematic Angles (Degrees)
+const armPos = {
+  idle:  { shoulder: -60, elbow: 120, wrist: 30 },
+  reach: { shoulder: 15,  elbow: 45,  wrist: -60 }, // Bend down to conveyor
+  lift:  { shoulder: -25, elbow: 45,  wrist: -20 }  // Reach up to platform
+};
+
+// Initialize Robot Arm to Idle State
+gsap.set('#jointShoulder', { rotation: armPos.idle.shoulder });
+gsap.set('#jointElbow', { rotation: armPos.idle.elbow });
+gsap.set('#jointWrist', { rotation: armPos.idle.wrist });
+
+async function selectSection(section) {
+  if (isMoving || currentSection === section) return;
+  isMoving = true;
+
+  updateStatus(`SELECTED: ${section.toUpperCase()}`);
+
+  // 1. Return previous box to conveyor if one exists
+  if (currentSection) {
+    updateStatus(`RETURNING: ${currentSection.toUpperCase()}`);
+    await returnPreviousBox(currentSection);
+  }
+
+  // 2. Slide Conveyor to new box
+  updateStatus(`MOVING CONVEYOR...`);
+  await moveConveyor(section);
+
+  // 3. Pick and Place new box onto platform
+  updateStatus(`PICKING: ${section.toUpperCase()}`);
+  await pickAndPlace(section);
+
+  // 4. Scroll page
+  updateStatus(`READY`);
+  document.getElementById(section).scrollIntoView({ behavior: "smooth" });
+
+  currentSection = section;
+  isMoving = false;
 }
 
-html { scroll-behavior: smooth; }
-body { background: #f9f9f9; color: #222; }
-
-/* ================= HERO ================= */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  padding: 40px;
-  gap: 40px;
-}
-.hero-left { width: 75%; }
-.hero h1 { font-size: 4rem; margin-bottom: 10px; }
-.hero p { font-size: 1.2rem; color: #555; margin-bottom: 40px; }
-
-/* ================= FACTORY CELL ================= */
-.factory-cell {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 3px solid #ddd;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+function updateStatus(text) {
+  statusText.innerHTML = text;
 }
 
-/* ================= DROP ZONE (PLATFORM) ================= */
-.drop-zone {
-  position: absolute;
-  bottom: 250px;
-  left: 320px;
-  width: 120px;
-  height: 12px;
-  background: #444;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-}
-.drop-zone::after {
-  content: "TARGET PLATFORM";
-  position: absolute;
-  top: -25px;
-  font-weight: bold;
-  color: #888;
-  font-size: 0.75rem;
-  width: 200px;
-  text-align: center;
-  letter-spacing: 1px;
+function moveConveyor(section) {
+  return new Promise((resolve) => {
+    gsap.to(conveyor, {
+      x: positions[section],
+      duration: 1.5,
+      ease: "power2.inOut",
+      onComplete: resolve
+    });
+  });
 }
 
-/* ================= ROBOT ARM (NESTED) ================= */
-.robot-base {
-  position: absolute;
-  left: 100px;
-  bottom: 60px;
-  width: 80px;
-  height: 90px;
-  background: #333;
-  border-radius: 10px 10px 0 0;
+function pickAndPlace(section) {
+  return new Promise((resolve) => {
+    const box = document.getElementById(`${section}-box`);
+    const tl = gsap.timeline({ onComplete: resolve });
+
+    // Arm reaches down
+    tl.to('#jointShoulder', { rotation: armPos.reach.shoulder, duration: 0.8, ease: "power1.inOut" }, "reach")
+      .to('#jointElbow', { rotation: armPos.reach.elbow, duration: 0.8, ease: "power1.inOut" }, "reach")
+      .to('#jointWrist', { rotation: armPos.reach.wrist, duration: 0.8, ease: "power1.inOut" }, "reach");
+
+    // Arm and Box lift together up to the platform (Y: -190)
+    tl.to('#jointShoulder', { rotation: armPos.lift.shoulder, duration: 1, ease: "power1.inOut" }, "lift")
+      .to('#jointElbow', { rotation: armPos.lift.elbow, duration: 1, ease: "power1.inOut" }, "lift")
+      .to('#jointWrist', { rotation: armPos.lift.wrist, duration: 1, ease: "power1.inOut" }, "lift")
+      .to(box, { y: -190, duration: 1, ease: "power1.inOut" }, "lift");
+
+    // Arm retracts to idle, leaving box on the platform
+    tl.to('#jointShoulder', { rotation: armPos.idle.shoulder, duration: 0.6, ease: "power1.inOut" }, "idle")
+      .to('#jointElbow', { rotation: armPos.idle.elbow, duration: 0.6, ease: "power1.inOut" }, "idle")
+      .to('#jointWrist', { rotation: armPos.idle.wrist, duration: 0.6, ease: "power1.inOut" }, "idle");
+  });
 }
 
-.joint {
-  position: absolute;
-  background: #ffd100; /* Fanuc Yellow */
-  border: 3px solid #222;
-  border-radius: 15px;
-  height: 30px;
-  transform-origin: 15px 15px; /* Pivot point */
-}
+function returnPreviousBox(section) {
+  return new Promise((resolve) => {
+    const box = document.getElementById(`${section}-box`);
+    const tl = gsap.timeline({ onComplete: resolve });
 
-/* Pivot Pins */
-.joint::after {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background: #222;
-  border-radius: 50%;
-  top: 6px;
-  left: 6px;
-}
+    // Arm moves to the platform to grab the current box
+    tl.to('#jointShoulder', { rotation: armPos.lift.shoulder, duration: 0.6, ease: "power1.inOut" }, "reach")
+      .to('#jointElbow', { rotation: armPos.lift.elbow, duration: 0.6, ease: "power1.inOut" }, "reach")
+      .to('#jointWrist', { rotation: armPos.lift.wrist, duration: 0.6, ease: "power1.inOut" }, "reach");
 
-.shoulder { width: 150px; top: 15px; left: 25px; z-index: 3; }
-.elbow { width: 130px; top: -3px; left: 120px; z-index: 2; }
-.wrist { width: 70px; top: -3px; left: 100px; z-index: 1; }
+    // Arm and Box lower together back to the conveyor (Y: 0)
+    tl.to('#jointShoulder', { rotation: armPos.reach.shoulder, duration: 1, ease: "power1.inOut" }, "lower")
+      .to('#jointElbow', { rotation: armPos.reach.elbow, duration: 1, ease: "power1.inOut" }, "lower")
+      .to('#jointWrist', { rotation: armPos.reach.wrist, duration: 1, ease: "power1.inOut" }, "lower")
+      .to(box, { y: 0, duration: 1, ease: "power1.inOut" }, "lower");
 
-.gripper {
-  position: absolute;
-  width: 25px;
-  height: 40px;
-  border: 4px solid #222;
-  border-left: none;
-  top: -9px;
-  left: 55px;
-  border-radius: 0 8px 8px 0;
-}
-
-/* ================= CONVEYOR ================= */
-.conveyor-wrapper {
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  width: 100%;
-  height: 140px;
-  overflow: hidden;
-}
-.conveyor-track {
-  position: absolute;
-  width: 100%;
-  height: 40px;
-  background: #888;
-  border-top: 4px solid #555;
-  top: 50px;
-}
-.conveyor {
-  position: absolute;
-  display: flex;
-  gap: 80px;
-  left: 320px; /* Aligns first box directly under platform */
-  top: 0;
-}
-.box {
-  width: 120px;
-  height: 90px;
-  background: #ffd100;
-  border: 3px solid #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 0.9rem;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.15);
-}
-
-/* ================= TEACH PENDANT ================= */
-.teach-pendant {
-  width: 320px;
-  background: #ffd100;
-  border-radius: 12px;
-  padding: 20px;
-  border: 4px solid #222;
-  height: fit-content;
-  position: sticky;
-  top: 30px;
-  box-shadow: 5px 5px 0px rgba(0,0,0,0.8);
-}
-.screen {
-  background: #0a2c0a;
-  color: #00ff55;
-  height: 120px;
-  border-radius: 6px;
-  padding: 15px;
-  margin-bottom: 20px;
-  font-family: monospace;
-  border: 4px solid #222;
-}
-.screen-title { margin-bottom: 10px; font-size: 1rem; border-bottom: 1px solid #00ff55; padding-bottom: 5px;}
-#statusText { line-height: 1.5; font-size: 0.9rem; }
-
-.button-grid { display: flex; flex-direction: column; gap: 10px; }
-.button-grid button {
-  background: #222;
-  color: white;
-  border: none;
-  padding: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 6px;
-  transition: 0.2s;
-  text-transform: uppercase;
-}
-.button-grid button:hover { background: #444; }
-
-.emergency {
-  margin-top: 20px;
-  background: #e60000;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-weight: bold;
-  border-radius: 50px;
-  border: 3px solid #222;
-  cursor: pointer;
-}
-
-/* ================= CONTENT ================= */
-.content-section {
-  min-height: 80vh;
-  padding: 100px 80px;
-  border-top: 2px solid #ddd;
-}
-.content-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
-.content-section p { max-width: 700px; line-height: 1.8; color: #444; }
-
-@media (max-width: 1100px) {
-  .hero { flex-direction: column; }
-  .hero-left { width: 100%; }
-  .teach-pendant { width: 100%; position: relative; }
+    // Arm retracts back to idle position out of the way
+    tl.to('#jointShoulder', { rotation: armPos.idle.shoulder, duration: 0.8, ease: "power1.inOut" }, "idle")
+      .to('#jointElbow', { rotation: armPos.idle.elbow, duration: 0.8, ease: "power1.inOut" }, "idle")
+      .to('#jointWrist', { rotation: armPos.idle.wrist, duration: 0.8, ease: "power1.inOut" }, "idle");
+  });
 }
