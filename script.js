@@ -21,16 +21,17 @@ const positions = {
 };
 
 // Precisely calculated arm angles for perfect contact.
-// Gripper will lay flat on top of the box.
+// New Kinematics: 90 degrees points straight down to the floor
 const armPos = {
-  idle:  { shoulder: -20, elbow: 110, wrist: -20 },   // Folded out of the way
-  reach: { shoulder: 62, elbow: 15, wrist: 13 },     // Gripper physically touches box top
-  lift:  { shoulder: 28, elbow: 55, wrist: 7 }       // Gripper hovers right above platform
+  idle:  { shoulder: 165, elbow: -140, wrist: -25 }, // Folded up tight against ceiling
+  reach: { shoulder: 90, elbow: 10, wrist: -10 },    // Reaching straight down to the box
+  lift:  { shoulder: 35, elbow: 75, wrist: -20 }     // Arcing right to the Target Platform
 };
 
 gsap.set('#jointShoulder', { rotation: armPos.idle.shoulder });
 gsap.set('#jointElbow', { rotation: armPos.idle.elbow });
 gsap.set('#jointWrist', { rotation: armPos.idle.wrist });
+
 
 function setLights(state) {
   lightRed.className = "light red";
@@ -99,18 +100,19 @@ function pickAndPlace(section) {
     const box = document.getElementById(`${section}-box`);
     const tl = gsap.timeline({ onComplete: resolve });
 
-    // 1. Arm reaches down, precisely touching the box
+    // 1. Arm reaches straight down to pickup location
     tl.to('#jointShoulder', { rotation: armPos.reach.shoulder, duration: 0.8, ease: "power1.inOut" }, "reach")
       .to('#jointElbow', { rotation: armPos.reach.elbow, duration: 0.8, ease: "power1.inOut" }, "reach")
       .to('#jointWrist', { rotation: armPos.reach.wrist, duration: 0.8, ease: "power1.inOut" }, "reach");
 
-    // 2. Arm and Box lift perfectly onto the platform (Y = -150 to sit exactly flush on the platform)
+    // 2. Trajectory Arc: Lift UP (y:-150) and shift RIGHT (x:230) to the platform
+    // The combination of joint rotation and X/Y translation creates the blue arc
     tl.to('#jointShoulder', { rotation: armPos.lift.shoulder, duration: 1, ease: "power1.inOut" }, "lift")
       .to('#jointElbow', { rotation: armPos.lift.elbow, duration: 1, ease: "power1.inOut" }, "lift")
       .to('#jointWrist', { rotation: armPos.lift.wrist, duration: 1, ease: "power1.inOut" }, "lift")
-      .to(box, { y: -150, duration: 1, ease: "power1.inOut" }, "lift");
+      .to(box, { x: 230, y: -150, duration: 1, ease: "power1.inOut" }, "lift");
 
-    // 3. Arm retracts, leaving box
+    // 3. Arm retracts to ceiling idle, leaving box on platform
     tl.to('#jointShoulder', { rotation: armPos.idle.shoulder, duration: 0.6, ease: "power1.inOut" }, "idle")
       .to('#jointElbow', { rotation: armPos.idle.elbow, duration: 0.6, ease: "power1.inOut" }, "idle")
       .to('#jointWrist', { rotation: armPos.idle.wrist, duration: 0.6, ease: "power1.inOut" }, "idle");
@@ -122,18 +124,18 @@ function returnPreviousBox(section) {
     const box = document.getElementById(`${section}-box`);
     const tl = gsap.timeline({ onComplete: resolve });
 
-    // 1. Arm reaches platform
+    // 1. Arm arcs over to platform
     tl.to('#jointShoulder', { rotation: armPos.lift.shoulder, duration: 0.6, ease: "power1.inOut" }, "reach")
       .to('#jointElbow', { rotation: armPos.lift.elbow, duration: 0.6, ease: "power1.inOut" }, "reach")
       .to('#jointWrist', { rotation: armPos.lift.wrist, duration: 0.6, ease: "power1.inOut" }, "reach");
 
-    // 2. Arm and Box lower back to conveyor exactly (Y = 0)
+    // 2. Return Arc: Bring box back left (x:0) and down (y:0) to the conveyor
     tl.to('#jointShoulder', { rotation: armPos.reach.shoulder, duration: 1, ease: "power1.inOut" }, "lower")
       .to('#jointElbow', { rotation: armPos.reach.elbow, duration: 1, ease: "power1.inOut" }, "lower")
       .to('#jointWrist', { rotation: armPos.reach.wrist, duration: 1, ease: "power1.inOut" }, "lower")
-      .to(box, { y: 0, duration: 1, ease: "power1.inOut" }, "lower");
+      .to(box, { x: 0, y: 0, duration: 1, ease: "power1.inOut" }, "lower");
 
-    // 3. Arm idles safely
+    // 3. Arm folds back to ceiling
     tl.to('#jointShoulder', { rotation: armPos.idle.shoulder, duration: 0.8, ease: "power1.inOut" }, "idle")
       .to('#jointElbow', { rotation: armPos.idle.elbow, duration: 0.8, ease: "power1.inOut" }, "idle")
       .to('#jointWrist', { rotation: armPos.idle.wrist, duration: 0.8, ease: "power1.inOut" }, "idle");
