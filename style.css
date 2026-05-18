@@ -26,7 +26,7 @@ body { background: #1e2024; color: #ffffff; overflow-x: hidden; }
 .btn.secondary { background: transparent; color: #fa5b60; border: 2px solid #fa5b60; }
 .btn.secondary:hover { background: #fa5b60; color: #fff; }
 .intro-image { position: absolute; right: 5%; bottom: 0; width: 45%; height: 90vh; display: flex; justify-content: center; align-items: flex-end; }
-.intro-image img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.intro-image img { max-width: 80%; max-height: 80%; object-fit: contain; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 /* ================= FACTORY SECTION ================= */
