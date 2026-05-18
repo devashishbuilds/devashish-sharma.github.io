@@ -10,77 +10,374 @@
 </head>
 <body>
 
-  <section class="hero">
+  <nav class="navbar">
+    <ul class="nav-links">
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#portfolio">Interactive Workcell</a></li>
+      <!-- <li><a href="#experience">Roadmap</a></li> -->
+      <li><a href="#projects">Projects</a></li>
+      <!-- <li><a href="#publications">Publications</a></li> -->
+    </ul>
+  </nav>
+
+  <section class="intro-hero" id="home">
+    <div class="intro-content">
+      <h4 class="greeting" id="flip-greeting">HELLO!</h4>
+      <h1 class="name-title">I Am Devashish Sharma<span class="cursor">|</span></h1>
+      <p class="intro-desc">
+        I'm an Automation & Robotics Engineer with extensive experience in mechatronics, PLC programming, and system design. My expertise is to create dynamic robotic solutions and interactive workflows.
+      </p>
+      <div class="intro-buttons">
+        <a href="#portfolio" class="btn primary">View Work</a>
+        <a href="#contact" class="btn secondary">Hire Me</a>
+      </div>
+    </div>
+
+    <div class="intro-image">
+      <img src="your-image-file.png" alt="Devashish Sharma" />
+    </div>
+  </section>
+
+  <section class="factory-section" id="portfolio">
     
-    <div class="hero-left">
-      <h1>DEVASHISH SHARMA</h1>
-      <p>Automation | Robotics | Mechatronics</p>
+    <div class="factory-left">
+      <h2 class="section-title">Interactive Workcell</h2>
+      <p class="section-subtitle">Select a module on the Teach Pendant to initiate the Gantry Sequence.</p>
 
-      <div class="factory-cell">
-        
-        <div class="stack-light">
-          <div class="light red" id="lightRed"></div>
-          <div class="light yellow" id="lightYellow"></div>
-          <div class="light green active" id="lightGreen"></div>
-        </div>
-
-        <div class="platform-container">
-          <div class="drop-zone"></div>
-          <div class="support-leg left"></div>
-          <div class="support-leg right"></div>
-        </div>
-
-        <div class="conveyor-wrapper">
-          <div class="conveyor-track"></div>
-          <div class="rollers" id="conveyorRollers"></div>
+      <div class="factory-wrapper" id="factoryWrapper">
+        <div class="factory-cell" id="factoryCell">
           
-          <div class="conveyor" id="conveyor">
-            <div class="box" id="education-box">EDUCATION</div>
-            <div class="box" id="projects-box">PROJECTS</div>
-            <div class="box" id="experience-box">EXPERIENCE</div>
-            <div class="box" id="skills-box">SKILLS</div>
-            <div class="box" id="contact-box">CONTACT</div>
-          </div>
-        </div>
+          <div class="gantry-track"></div>
 
-        <div class="robot-ceiling-base" id="robotBase">
-          <div class="joint shoulder" id="jointShoulder">
-            <div class="joint elbow" id="jointElbow">
-              <div class="joint wrist" id="jointWrist">
-                <div class="gripper" id="gripper">
-                  <div class="claw top"></div>
-                  <div class="claw bottom"></div>
+          <div class="modern-stack-light">
+            <div class="segment red" id="lightRed"></div>
+            <div class="segment yellow" id="lightYellow"></div>
+            <div class="segment green active" id="lightGreen"></div>
+          </div>
+
+          <div class="platform-container">
+            <div class="drop-zone"></div>
+            <div class="support-leg left"></div>
+            <div class="support-leg right"></div>
+          </div>
+
+          <div class="conveyor-wrapper">
+            <div class="conveyor-track"></div>
+            <div class="rollers" id="conveyorRollers"></div>
+            <div class="conveyor" id="conveyor">
+              <div class="box" id="experience-box">EXPERIENCE</div>
+              <div class="box" id="projects-box">PROJECTS</div>
+              <div class="box" id="publications-box">PUBLICATIONS</div>
+              <div class="box" id="skills-box">SKILLS</div>
+              <div class="box" id="contact-box">CONTACT</div>
+            </div>
+          </div>
+          
+          <div class="end-roller" id="endRoller"></div>
+
+          <div class="robot-ceiling-base" id="robotBase">
+            <div class="joint shoulder" id="jointShoulder">
+              <div class="joint elbow" id="jointElbow">
+                <div class="joint wrist" id="jointWrist">
+                  <div class="gripper" id="gripper">
+                    <div class="claw top"></div>
+                    <div class="claw bottom"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
 
-    <div class="teach-pendant">
-      <div class="screen">
-        <div class="screen-title">FANUC TP</div>
-        <div id="statusText">READY</div>
+    <div class="teach-pendant-container">
+      <div class="teach-pendant">
+        <div class="tp-bumper top-left"></div>
+        <div class="tp-bumper top-right"></div>
+        
+        <div class="screen">
+          <div class="screen-title">FANUC TP - HMI</div>
+          <div id="statusText">READY</div>
+        </div>
+        
+        <div class="button-grid">
+          <button onclick="selectSection('experience')">EXPERIENCE</button>
+          <button onclick="selectSection('projects')">PROJECTS</button>
+          <button onclick="selectSection('publications')">PUBLICATIONS</button>
+          <button onclick="selectSection('skills')">SKILLS</button>
+          <button onclick="selectSection('contact')">CONTACT</button>
+        </div>
+
+        <div class="tp-bottom">
+          <div class="d-pad">
+            <button class="d-btn up">&#9650;</button>
+            <button class="d-btn left">&#9664;</button>
+            <div class="d-btn center-blank"></div>
+            <button class="d-btn right">&#9654;</button>
+            <button class="d-btn down">&#9660;</button>
+          </div>
+          
+          <div class="e-stop-wrapper">
+            <div class="e-stop-label">E-STOP</div>
+            <button class="emergency-circular" onclick="triggerEmergencyStop()"></button>
+          </div>
+        </div>
+
       </div>
-      <div class="button-grid">
-        <button onclick="selectSection('education')">EDUCATION</button>
-        <button onclick="selectSection('projects')">PROJECTS</button>
-        <button onclick="selectSection('experience')">EXPERIENCE</button>
-        <button onclick="selectSection('skills')">SKILLS</button>
-        <button onclick="selectSection('contact')">CONTACT</button>
-      </div>
-      <button class="emergency" onclick="triggerEmergencyStop()">EMERGENCY STOP</button>
+      <div class="tp-cable"></div>
     </div>
 
   </section>
 
-  <section id="education" class="content-section"><h2>Education</h2><p>Add your details here.</p></section>
-  <section id="projects" class="content-section"><h2>Projects</h2><p>Add your projects here.</p></section>
-  <section id="experience" class="content-section"><h2>Experience</h2><p>Add your experience here.</p></section>
-  <section id="skills" class="content-section"><h2>Skills</h2><p>Add your skills here.</p></section>
-  <section id="contact" class="content-section"><h2>Contact</h2><p>Add your contact info here.</p></section>
+  <div class="content-wrapper">
+    
+    <section id="experience" class="content-section">
+      <h2>Education & Experience Roadmap</h2>
+      
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+        <div class="timeline">
+          
+          <div class="timeline-item">
+            <div class="timeline-content top">
+              <h3>B.Tech Mechatronics</h3>
+              <h4>Hindustan Institute</h4>
+              <span>Nov 2020 – Jun 2024</span>
+            </div>
+            <div class="timeline-connector top-conn"></div>
+            <div class="timeline-logo-wrapper" onclick="openModal('hindustan')">
+              <img src="hindustan-logo.png" alt="Hindustan Logo" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content bottom">
+              <h3>Engineering Intern</h3>
+              <h4>AtumX</h4>
+              <span>Jun 2022 – Nov 2022</span>
+            </div>
+            <div class="timeline-connector bottom-conn"></div>
+            <div class="timeline-logo-wrapper" onclick="openModal('atumx')">
+              <img src="atumx-logo.png" alt="AtumX Logo" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content top">
+              <h3>Research Intern</h3>
+              <h4>CAIR, DRDO</h4>
+              <span>Jun 2023 – Aug 2023</span>
+            </div>
+            <div class="timeline-connector top-conn"></div>
+            <div class="timeline-logo-wrapper" onclick="openModal('cair')">
+              <img src="drdo-logo.png" alt="DRDO Logo" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content bottom">
+              <h3>Project Associate</h3>
+              <h4>IIT Bombay</h4>
+              <span>Jan 2024 – Nov 2024</span>
+            </div>
+            <div class="timeline-connector bottom-conn"></div>
+            <div class="timeline-logo-wrapper" onclick="openModal('iitb')">
+              <img src="iitb-logo.png" alt="IIT Bombay Logo" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content top">
+              <h3>Master's Automation Eng.</h3>
+              <h4>University of Bologna</h4>
+              <span>Nov 2024 – Present</span>
+            </div>
+            <div class="timeline-connector top-conn"></div>
+            <div class="timeline-logo-wrapper" onclick="openModal('bologna-edu')">
+              <img src="bologna-logo.png" alt="Bologna Logo" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-content bottom">
+              <h3>Automation Intern</h3>
+              <h4>Montecuccolino Lab</h4>
+              <span>Oct 2025 – Dec 2025</span>
+            </div>
+            <div class="timeline-connector bottom-conn"></div>
+            <div class="timeline-logo-wrapper" onclick="openModal('bologna-exp')">
+              <img src="bologna-logo.png" alt="Bologna Logo" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="content-section">
+      <h2>Projects</h2>
+      
+      <div class="scrolling-wrapper">
+        <div class="project-track">
+          
+          <div class="project-card" onclick="openModal('snake')">
+            <img src="snake-robot.jpg" alt="Snake Robot" class="project-image" onerror="this.style.display='none'">
+            <h3>Serpenoid Robots for Unmanned Exploration</h3>
+            <p>Click to view project details, images, and algorithms...</p>
+          </div>
+          <div class="project-card" onclick="openModal('knee')">
+            <img src="knee-rehab.jpg" alt="Knee Rehab" class="project-image" onerror="this.style.display='none'">
+            <h3>AI-Based Knee Rehabilitation Mechanism</h3>
+            <p>Click to view system parameters and AI integration...</p>
+          </div>
+          <div class="project-card" onclick="openModal('swarm')">
+            <img src="swarm-robot.jpg" alt="Swarm Robots" class="project-image" onerror="this.style.display='none'">
+            <h3>Homogeneous Swarm of Cooperative Robots</h3>
+            <p>Click to view WeBots simulation and communication logic...</p>
+          </div>
+          <div class="project-card" onclick="openModal('disinfectant')">
+            <img src="disinfectant-bot.jpg" alt="Disinfectant Bot" class="project-image" onerror="this.style.display='none'">
+            <h3>Robotic Disinfectant System</h3>
+            <p>Click to view path planning and hardware design...</p>
+          </div>
+          <div class="project-card" onclick="openModal('follower')">
+            <h3>Fastest Line Follower Robot</h3>
+            <p>Made a fast-running bot which follows a black line. Worked with multiple sensors and different controllers...</p>
+          </div>
+          <div class="project-card" onclick="openModal('backpack')">
+            <h3>Next Generation Backpack</h3>
+            <p>Developed a smart backpack featuring a programmable pixel display built using a custom matrix of RGB LEDs.</p>
+          </div>
+
+          <div class="project-card" onclick="openModal('snake')">
+            <img src="snake-robot.jpg" alt="Snake Robot" class="project-image" onerror="this.style.display='none'">
+            <h3>Serpenoid Robots for Unmanned Exploration</h3>
+            <p>Click to view project details, images, and algorithms...</p>
+          </div>
+          <div class="project-card" onclick="openModal('knee')">
+            <img src="knee-rehab.jpg" alt="Knee Rehab" class="project-image" onerror="this.style.display='none'">
+            <h3>AI-Based Knee Rehabilitation Mechanism</h3>
+            <p>Click to view system parameters and AI integration...</p>
+          </div>
+          <div class="project-card" onclick="openModal('swarm')">
+            <img src="swarm-robot.jpg" alt="Swarm Robots" class="project-image" onerror="this.style.display='none'">
+            <h3>Homogeneous Swarm of Cooperative Robots</h3>
+            <p>Click to view WeBots simulation and communication logic...</p>
+          </div>
+          <div class="project-card" onclick="openModal('disinfectant')">
+            <img src="disinfectant-bot.jpg" alt="Disinfectant Bot" class="project-image" onerror="this.style.display='none'">
+            <h3>Robotic Disinfectant System</h3>
+            <p>Click to view path planning and hardware design...</p>
+          </div>
+          <div class="project-card" onclick="openModal('follower')">
+            <h3>Fastest Line Follower Robot</h3>
+            <p>Made a fast-running bot which follows a black line. Worked with multiple sensors and different controllers...</p>
+          </div>
+          <div class="project-card" onclick="openModal('backpack')">
+            <h3>Next Generation Backpack</h3>
+            <p>Developed a smart backpack featuring a programmable pixel display built using a custom matrix of RGB LEDs.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="content-section">
+      <h2>Publications</h2>
+      <div class="publication-grid">
+        <a href="#" target="_blank" class="publication-card">
+          <div class="pub-icon">&#128212;</div>
+          <div class="pub-details">
+            <h3>A Multi-Gait Strategy for Adaptive Concertina Locomotion in a Snake Robot Navigating Through Channels of Varying Width</h3>
+            <p>Accepted for presentation at the 23rd IFAC World Congress, Busan, South Korea, August 23–28, 2026</p>
+            <span class="read-more">TO BE PUBLISHED &rarr;</span>
+          </div>
+        </a>
+        <a href="https://ieeexplore.ieee.org/abstract/document/11127631" target="_blank" class="publication-card">
+          <div class="pub-icon">&#128212;</div>
+          <div class="pub-details">
+            <h3>Adaptive Concertina Locomotion of a Robotic Snake Through Narrow Uncertain Channels</h3>
+            <p>IEEE- International Conference on Robotics and Automation (ICRA), 2025</p>
+            <span class="read-more">Read Publication &rarr;</span>
+          </div>
+        </a>
+        <a href="https://ijra.iaescore.com/index.php/IJRA/article/view/20761" target="_blank" class="publication-card">
+          <div class="pub-icon">&#128212;</div>
+          <div class="pub-details">
+            <h3>Design and development of knee rehabilitation robot</h3>
+            <p>IAES International Journal of Robotics and Automation, 2024</p>
+            <span class="read-more">Read Publication &rarr;</span>
+          </div>
+        </a>
+        <a href="https://pubs.aip.org/aip/acp/article-abstract/2946/1/020003/2920557/Design-and-evaluation-of-various-knee-assistive" target="_blank" class="publication-card">
+          <div class="pub-icon">&#128212;</div>
+          <div class="pub-details">
+            <h3>Design and evaluation of various knee assistive mechanisms for rehabilitation</h3>
+            <p>AIP Conference Proceedings, 2023</p>
+            <span class="read-more">Read Publication &rarr;</span>
+          </div>
+        </a>
+        
+      </div>
+    </section>
+
+    <section id="skills" class="content-section">
+      <h2>Skills</h2>
+      <p>PLC, ROS, MATLAB, CAD, Embedded Systems, Python, C++</p>
+    </section>
+
+    <section id="contact" class="content-section">
+      <h2>Contact & Connect</h2>
+      
+      <div class="contact-layout">
+        <div class="contact-info">
+          <p class="contact-desc">Feel free to reach out for collaborations, project inquiries, or just to say hi!</p>
+          
+          <div class="social-links">
+            <a href="mailto:devashish.sharm@studio.unibo.it" class="social-btn email-btn">📧 Email Me</a>
+            <a href="www.linkedin.com/in/devashish-sharma-15aaa0153" target="_blank" class="social-btn in-btn">🔗 LinkedIn</a>
+            <a href="https://github.com/devashishbuilds" target="_blank" class="social-btn git-btn">💻 GitHub</a>
+          </div>
+        </div>
+
+        <div class="linkedin-embed-box">
+          <h3>Latest Update</h3>
+          
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7330384042942517248?collapsed=1" height="541" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>          
+          </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="universalModal" class="project-modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      
+      <h2 id="modalTitle">Title</h2>
+      <h4 id="modalSubtitle">Subtitle</h4>
+      
+      <div id="modalTextContent" class="modal-text-content">
+        <ul id="modalBullets" class="modal-bullets"></ul>
+      </div>
+
+      <div id="modalCarousel" class="carousel-container">
+        <button class="carousel-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+        <div class="modal-image-wrapper">
+          <img id="modalImage" src="" alt="Gallery Image">
+        </div>
+        <button class="carousel-btn next" onclick="changeSlide(1)">&#10095;</button>
+      </div>
+      
+      <div id="modalSlideInfo" class="modal-info">
+        <div class="slide-counter" id="slideCounter">1 / 3</div>
+        <p id="modalDescription">Image description will appear here.</p>
+      </div>
+      
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
