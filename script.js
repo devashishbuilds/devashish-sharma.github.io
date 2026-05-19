@@ -26,11 +26,12 @@ window.addEventListener("resize", resizeFactory);
 setTimeout(resizeFactory, 100);
 
 // ================= GANTRY SYSTEM LOGIC =================
+// UPDATED POSITIONS: 'skills' changed to 'creative'
 const positions = { 
   experience: 0, 
   projects: -210, 
   publications: -420, 
-  skills: -630, 
+  creative: -630, 
   contact: -840 
 };
 
@@ -38,7 +39,6 @@ const GANTRY_TRAVEL_X = 535;
 const LIFT_HEIGHT_Y = -140;  
 
 const armPos = {
-  //idle:     { shoulder: 130, elbow: -85, wrist: 45 },
   idle:     { shoulder: 175, elbow: -120, wrist: -80 }, 
   reach:    { shoulder: 130, elbow: -85,  wrist: 45 },  
   transfer: { shoulder: 160, elbow: -150, wrist: 80 }   
@@ -187,154 +187,151 @@ function triggerEmergencyStop() {
   updateStatus(`<span style="color:red">SYS FAULT - E-STOP<br>REFRESH TO RESET</span>`);
 }
 
-// ================= UNIVERSAL MODAL LOGIC (ROADMAP & PROJECTS) =================
-const portfolioData = {
-  // --- ROADMAP DATA ---
-  "hindustan": {
-    title: "B.Tech in Mechatronics Engineering",
-    subtitle: "Hindustan Institute of Technology and Science | Chennai, India (Nov 2020 – Jun 2024)",
-    bullets: [],
-    slides: []
-  },
-  "atumx": {
-    title: "Engineering Intern – Robotics, Simulation & Assembly",
-    subtitle: "AtumX | Chennai, India (Jun 2022 – Nov 2022)",
-    bullets: [
-      "Designed mechanical components in SolidWorks, producing 2D drawings and 3D assemblies, and manufactured parts using both additive and subtractive processes.",
-      "Managed and maintained component lists and assembly documentation, supporting accurate BOM tracking.",
-      "Collaborated closely with cross-functional engineering teams to validate design assumptions.",
-      "Assisted in mechanical assembly, functional testing, and structured troubleshooting of robotic subsystems.",
-      "Used ROS for robot simulation and motion validation to support design verification prior to hardware build."
-    ],
-    slides: [] // Add {img: "img.jpg", desc: "desc"} here if you have job photos!
-  },
-  "cair": {
-    title: "Research Intern – Robotics & Computer Vision",
-    subtitle: "Centre for Artificial Intelligence & Robotics (CAIR), DRDO | Bangalore, India (Jun 2023 – Aug 2023)",
-    bullets: [
-      "Conducted an in depth literature survey on dual-arm serial manipulators (ABB- YuMi Robot) for vision-based grasp pose estimation.",
-      "Analyzed grasp planning strategies integrating robotic kinematics and computer vision methods.",
-      "Studied perception driven manipulation approaches for improving grasp reliability in robotic systems."
-    ],
-    slides: []
-  },
-  "iitb": {
-    title: "Research Intern & Project Associate",
-    subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jan 2024 – Nov 2024)",
-    bullets: [
-      "Designed and fabricated mechanical hardware for a snake-like robot, creating part drawings and assemblies in SolidWorks and producing components via FDM and SLA 3D printing technologies.",
-      "Developed and implemented mechanical test methods to evaluate link durability, motor coupling reliability, and structural performance.",
-      "Designed experimental procedures to verify actuator specifications including torque behaviour, repeatability, and load response.",
-      "Developed Python scripts for sensor and actuator data logging, performance evaluation, and visualization of experimental results.",
-      "Conducted repeatability and robustness testing during prototype validation, performing structured troubleshooting and root-cause analysis."
-    ],
-    slides: []
-  },
-  "bologna-edu": {
-    title: "Master’s in Automation Engineering",
-    subtitle: "Alma Mater Studiorum – Università di Bologna | Bologna, Italy (Nov 2024 – Present)",
-    bullets: [],
-    slides: []
-  },
-  "bologna-exp": {
-    title: "Automation & Manufacturing Intern",
-    subtitle: "University of Bologna – Montecuccolino Laboratory | Bologna, Italy (Oct 2025 – Dec 2025)",
-    bullets: [
-      "Designed and conducted experiments for robotics test bench calibration, sensor validation and repeatability analysis, including 3D modelling and fabrication using FDM technologies.",
-      "Characterized performance and reliability of electromechanical prototypes against defined specifications.",
-      "Defined structured test procedures and validation workflows; documented results and failure modes for engineering review.",
-      "Implemented control algorithms in TwinCAT for system verification."
-    ],
-    slides: []
-  },
 
-  // --- PROJECT DATA ---
+// ================= AUTO-SCROLLING SPLIT MODAL LOGIC =================
+
+// ================= INITIALIZE PDF.js WORKER =================
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+// Replace the 'presentation' array links with your actual image paths for each slide
+const portfolioData = {
+  // Roadmap Data
+  "hindustan": { title: "B.Tech in Mechatronics Engineering", subtitle: "Hindustan Institute of Technology and Science | Chennai, India (Nov 2020 – Jun 2024)", bullets: [], presentation: [] },
+  "atumx": { title: "Engineering Intern – Robotics, Simulation & Assembly", subtitle: "AtumX | Chennai, India (Jun 2022 – Nov 2022)", bullets: ["Designed mechanical components in SolidWorks, producing 2D drawings and 3D assemblies, and manufactured parts using both additive and subtractive processes.", "Managed and maintained component lists and assembly documentation, supporting accurate BOM tracking.", "Collaborated closely with cross-functional engineering teams to validate design assumptions.", "Assisted in mechanical assembly, functional testing, and structured troubleshooting of robotic subsystems.", "Used ROS for robot simulation and motion validation to support design verification prior to hardware build."], presentation: [] },
+  "cair": { title: "Research Intern – Robotics & Computer Vision", subtitle: "Centre for Artificial Intelligence & Robotics (CAIR), DRDO | Bangalore, India (Jun 2023 – Aug 2023)", bullets: ["Conducted an in depth literature survey on dual-arm serial manipulators (ABB- YuMi Robot) for vision-based grasp pose estimation.", "Analyzed grasp planning strategies integrating robotic kinematics and computer vision methods.", "Studied perception driven manipulation approaches for improving grasp reliability in robotic systems."], presentation: [] },
+  "iitb": { title: "Research Intern & Project Associate", subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jan 2024 – Nov 2024)", bullets: ["Designed and fabricated mechanical hardware for a snake-like robot, creating part drawings and assemblies in SolidWorks and producing components via FDM and SLA 3D printing technologies.", "Developed and implemented mechanical test methods to evaluate link durability, motor coupling reliability, and structural performance.", "Designed experimental procedures to verify actuator specifications including torque behaviour, repeatability, and load response.", "Developed Python scripts for sensor and actuator data logging, performance evaluation, and visualization of experimental results.", "Conducted repeatability and robustness testing during prototype validation, performing structured troubleshooting and root-cause analysis."], presentation: [] },
+  "bologna-edu": { title: "Master’s in Automation Engineering", subtitle: "Alma Mater Studiorum – Università di Bologna | Bologna, Italy (Nov 2024 – Present)", bullets: [], presentation: [] },
+  "bologna-exp": { title: "Automation & Manufacturing Intern", subtitle: "University of Bologna – Montecuccolino Laboratory | Bologna, Italy (Oct 2025 – Dec 2025)", bullets: ["Designed and conducted experiments for robotics test bench calibration, sensor validation and repeatability analysis, including 3D modelling and fabrication using FDM technologies.", "Characterized performance and reliability of electromechanical prototypes against defined specifications.", "Defined structured test procedures and validation workflows; documented results and failure modes for engineering review.", "Implemented control algorithms in TwinCAT for system verification."], presentation: [] },
+
+  // Project Data 
   "snake": {
     title: "Serpenoid Robots for Exploration",
     subtitle: "Bio-Inspired Adaptive Locomotion",
-    bullets: [],
-    slides: [
-      { img: "snake-img-1.jpg", desc: "Developed a bio-inspired snake robot with multiple rotary joints, driven by Dynamixel MX-64R motors, to achieve adaptive locomotion in straight and narrow channels." },
-      { img: "snake-img-2.jpg", desc: "Designed and implemented a control algorithm based on traveling wave motion." },
-      { img: "snake-img-3.jpg", desc: "Enabled selective anchoring using current feedback for highly efficient propulsion on uneven terrain." }
-    ]
+    summary: "Developed a bio-inspired snake robot with multiple rotary joints, driven by Dynamixel MX-64R motors...",
+    bullets: ["Hardware fabricated using FDM and SLA.", "Implemented traveling wave motion algorithms."],
+    pdf: "https://drive.google.com/file/d/1sJpZ-iBdYJbRG66oo55WYPgyPjIAxpic/view?usp=sharing" // Simply link your PDF here!
   },
   "knee": {
     title: "AI Knee Rehabilitation Mechanism",
     subtitle: "Smart Healthcare Automation",
-    bullets: [],
-    slides: [
-      { img: "knee-img-1.jpg", desc: "The system identifies if the patient is suffering from Osteoarthritis and assesses the severity level using AI." },
-      { img: "knee-img-2.jpg", desc: "Actuation parameters of the assistive mechanism are dynamically suggested to optimize the rehabilitation process." }
-    ]
+    summary: "The system is able to tell whether the patient is suffering from Osteoarthritis or not and if yes at what level of the same. In addition to this, it suggests the actuation parameters of the assistive mechanism such that rehabilitation process can be made faster with a good accuracy.",
+    bullets: ["AI-based Osteoarthritis assessment.", "Dynamic assistive mechanism parameter suggestion."],
+    pdf: "documents/snake-presentation.pdf"
+    // presentation: [ "https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_ai_knee_rehab/prediction.png?raw=true", "knee-img-2.jpg" ]
   },
   "swarm": {
     title: "Homogeneous Swarm of Cooperative Robots",
     subtitle: "Virtual Environment Simulation",
-    bullets: [],
-    slides: [
-      { img: "swarm-img-1.jpg", desc: "Setting up robust communication protocols between homogeneous robots in a 3-D virtual simulator (WeBots)." }
-    ]
+    summary: "Setting up communication between robots in a 3-D virtual simulator (WeBots).",
+    bullets: ["Webots 3D Simulation.", "Multi-agent communication setup."],
+    pdf: "documents/snake-presentation.pdf"
+    // presentation: [ "swarm-img-1.jpg" ]
   },
   "disinfectant": {
     title: "Robotic Disinfectant System",
     subtitle: "Autonomous Path Planning & Sanitization",
-    bullets: [],
-    slides: [
-      { img: "disinfectant-img-1.jpg", desc: "A robot capable of autonomous obstacle avoidance in complex pathways." },
-      { img: "disinfectant-img-2.jpg", desc: "Parallel processing allows it to simultaneously disinfect nearby surfaces within its operational range." }
-    ]
+    summary: "A robot which is capable of avoiding obstacles in the pathway and parallelly capable of disinfecting the near-by surfaces in range.",
+    bullets: ["Autonomous path navigation.", "Simultaneous spatial sanitization logic."],
+    pdf: "documents/snake-presentation.pdf"
+    // presentation: [ "disinfectant-img-1.jpg", "disinfectant-img-2.jpg" ]
   },
   "follower": {
     title: "Fastest Line Follower Robot",
     subtitle: "Sensor Integration & Control Logic",
-    bullets: ["Made a fast-running bot which follows a black line.", "Worked with multiple sensors and different controllers to obtain an ideal, competition-winning robot."],
-    slides: []
+    summary: "Made a fast running bot which follows black line, worked with multiple sensors and different controllers and obtained a ideal competition winning robot.",
+    bullets: ["High-speed sensory response.", "Optimal controller calibration."],
+    pdf: "documents/snake-presentation.pdf"
+    // presentation: [ "follower-img-1.jpg" ]
   },
   "backpack": {
     title: "Next Generation Backpack",
     subtitle: "Programmable RGB LED Matrix",
-    bullets: ["Developed a smart backpack featuring a programmable pixel display built using a custom matrix of RGB LEDs."],
-    slides: []
+    summary: "A smart backpack featuring a programmable pixel display built using a custom matrix of RGB LEDs.",
+    bullets: ["Custom LED hardware assembly.", "Custom graphics mapping."],
+    pdf: "documents/snake-presentation.pdf"
+    // presentation: [ "backpack-img-1.jpg" ]
   }
 };
 
-let currentGallery = [];
-let currentSlideIndex = 0;
+let autoScrollInterval;
+
+async function renderPDF(url, container) {
+  // Show a loading state while PDF.js does the heavy lifting
+  container.innerHTML = '<p style="color:#a0a4ab; padding: 20px; text-align:center;">Loading Presentation...</p>';
+  
+  try {
+    const pdf = await pdfjsLib.getDocument(url).promise;
+    container.innerHTML = ''; // Clear loading text
+    
+    // Render each page
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      
+      // Calculate scale to perfectly fit the container width
+      const viewportForWidth = page.getViewport({ scale: 1 });
+      const scale = container.clientWidth / viewportForWidth.width;
+      const viewport = page.getViewport({ scale: scale });
+      
+      // Create and append canvas
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      container.appendChild(canvas);
+      
+      // Render the page onto the canvas
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    }
+    
+    // Start auto-scroll ONLY after all pages are finished rendering
+    startAutoScroll();
+    
+  } catch (error) {
+    container.innerHTML = '<p style="color:#fa5b60; padding: 20px;">Error loading presentation file.</p>';
+    console.error("PDF Load Error:", error);
+  }
+}
 
 function openModal(id) {
   const modal = document.getElementById('universalModal');
   const modalContent = document.querySelector('.modal-content');
   const data = portfolioData[id];
-  
   if (!data) return;
 
-  // 1. Populate Text
+  // 1. Setup Text Container (Right Side)
   document.getElementById('modalTitle').innerText = data.title;
   document.getElementById('modalSubtitle').innerText = data.subtitle || '';
-
-  // 2. Populate Bullets
-  const bulletsContainer = document.getElementById('modalBullets');
-  const textContentWrapper = document.getElementById('modalTextContent');
-  if (data.bullets && data.bullets.length > 0) {
-    bulletsContainer.innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
-    textContentWrapper.style.display = 'block';
+  
+  const summaryEl = document.getElementById('modalSummary');
+  if(data.summary) {
+    summaryEl.innerText = data.summary;
+    summaryEl.style.display = "block";
   } else {
-    textContentWrapper.style.display = 'none';
+    summaryEl.style.display = "none";
   }
 
-  // 3. Populate Carousel
-  const carousel = document.getElementById('modalCarousel');
-  const slideInfo = document.getElementById('modalSlideInfo');
-  if (data.slides && data.slides.length > 0) {
-    carousel.style.display = 'flex';
-    slideInfo.style.display = 'block';
-    currentGallery = data.slides;
-    currentSlideIndex = 0;
-    updateSlideDisplay();
+  const bulletsContainer = document.getElementById('modalBullets');
+  if (data.bullets && data.bullets.length > 0) {
+    bulletsContainer.innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
+    document.getElementById('modalTextContent').style.display = 'block';
   } else {
-    carousel.style.display = 'none';
-    slideInfo.style.display = 'none';
+    document.getElementById('modalTextContent').style.display = 'none';
+  }
+
+  // 2. Setup Auto-Scrolling Presentation (Left Side)
+  const presentationContainer = document.getElementById('presentationContainer');
+  presentationContainer.innerHTML = ''; // Clear previous content
+  presentationContainer.scrollTop = 0;
+
+  if (data.pdf) {
+    // If a PDF exists, trigger the PDF.js engine
+    presentationContainer.style.display = 'block';
+    renderPDF(data.pdf, presentationContainer);
+  } else if (data.presentation && data.presentation.length > 0) {
+    // Fallback: If using images instead of a PDF
+    presentationContainer.innerHTML = data.presentation.map(img => `<img src="${img}" alt="Slide">`).join('');
+    presentationContainer.style.display = 'block';
+    startAutoScroll(); // Start scrolling immediately
+  } else {
+    presentationContainer.style.display = 'none';
   }
 
   // Show Modal
@@ -349,35 +346,14 @@ function closeModal() {
   const modal = document.getElementById('universalModal');
   const modalContent = document.querySelector('.modal-content');
   
+  clearInterval(autoScrollInterval); // Stop scrolling immediately
+  
   modal.style.opacity = '0';
   modalContent.style.transform = 'scale(0.9)';
-  
   setTimeout(() => {
     modal.style.display = 'none';
+    document.getElementById('presentationContainer').innerHTML = ''; // Clear canvases to free memory
   }, 300);
-}
-
-function changeSlide(direction) {
-  currentSlideIndex += direction;
-  if (currentSlideIndex >= currentGallery.length) {
-    currentSlideIndex = 0;
-  } else if (currentSlideIndex < 0) {
-    currentSlideIndex = currentGallery.length - 1;
-  }
-  updateSlideDisplay();
-}
-
-function updateSlideDisplay() {
-  const slide = currentGallery[currentSlideIndex];
-  const imgElement = document.getElementById('modalImage');
-  imgElement.style.opacity = 0.5;
-  
-  setTimeout(() => {
-    imgElement.src = slide.img;
-    document.getElementById('modalDescription').innerText = slide.desc;
-    document.getElementById('slideCounter').innerText = `${currentSlideIndex + 1} / ${currentGallery.length}`;
-    imgElement.style.opacity = 1;
-  }, 150);
 }
 
 window.onclick = function(event) {
@@ -387,24 +363,26 @@ window.onclick = function(event) {
   }
 }
 
-// ================= MULTILINGUAL FLIP GREETING =================
-const greetings = ["HELLO!", "CIAO!", "NAMASTE!", "HOLA!", "BONJOUR!", "HALLO!"];
-let greetIndex = 0;
-const greetElement = document.getElementById("flip-greeting");
+// === AUTO SCROLL FUNCTIONS ===
+function startAutoScroll() {
+  const container = document.getElementById('presentationContainer');
+  clearInterval(autoScrollInterval); // Prevent duplicates
+  
+  // Scroll Logic
+  autoScrollInterval = setInterval(() => {
+    container.scrollTop += 1.5; // Adjust this number for scroll speed
+    
+    // Stop scrolling if it reaches the bottom
+    if (container.scrollTop + container.clientHeight >= container.scrollHeight) {
+      clearInterval(autoScrollInterval);
+    }
+  }, 30); 
+}
 
-if (greetElement) {
-  setInterval(() => {
-    // 1. Flip out and fade
-    greetElement.classList.add("flip-out");
-    
-    // 2. Wait for the flip out to finish (400ms to match CSS), then swap text
-    setTimeout(() => {
-      greetIndex = (greetIndex + 1) % greetings.length;
-      greetElement.innerText = greetings[greetIndex];
-      
-      // 3. Flip back in
-      greetElement.classList.remove("flip-out");
-    }, 400); 
-    
-  }, 1500); // Change language every 1.5 seconds
+function pauseAutoScroll() {
+  clearInterval(autoScrollInterval);
+}
+
+function resumeAutoScroll() {
+  startAutoScroll();
 }
