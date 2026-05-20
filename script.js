@@ -208,14 +208,14 @@ const portfolioData = {
     subtitle: "Bio-Inspired Adaptive Locomotion",
     summary: "Developed a bio-inspired snake robot with multiple rotary joints, driven by Dynamixel MX-64R motors...",
     bullets: ["Hardware fabricated using FDM and SLA.", "Implemented traveling wave motion algorithms."],
-    pdf: "https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_ai_knee_rehab/ai_knee.pdf" // Simply link your PDF here!
+    pdf: "images/project_ai_knee_rehab/ai_knee.pdf" // Simply link your PDF here!
   },
   "knee": {
     title: "AI Knee Rehabilitation Mechanism",
     subtitle: "Smart Healthcare Automation",
     summary: "The system is able to tell whether the patient is suffering from Osteoarthritis or not and if yes at what level of the same. In addition to this, it suggests the actuation parameters of the assistive mechanism such that rehabilitation process can be made faster with a good accuracy.",
     bullets: ["AI-based Osteoarthritis assessment.", "Dynamic assistive mechanism parameter suggestion."],
-    pdf: "documents/snake-presentation.pdf"
+    pdf: "images/project_ai_knee_rehab/ai_knee.pdf"
     // presentation: [ "https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_ai_knee_rehab/prediction.png?raw=true", "knee-img-2.jpg" ]
   },
   "swarm": {
@@ -223,7 +223,7 @@ const portfolioData = {
     subtitle: "Virtual Environment Simulation",
     summary: "Setting up communication between robots in a 3-D virtual simulator (WeBots).",
     bullets: ["Webots 3D Simulation.", "Multi-agent communication setup."],
-    pdf: "documents/snake-presentation.pdf"
+    pdf: "images/project_ai_knee_rehab/ai_knee.pdf"
     // presentation: [ "swarm-img-1.jpg" ]
   },
   "disinfectant": {
@@ -231,7 +231,7 @@ const portfolioData = {
     subtitle: "Autonomous Path Planning & Sanitization",
     summary: "A robot which is capable of avoiding obstacles in the pathway and parallelly capable of disinfecting the near-by surfaces in range.",
     bullets: ["Autonomous path navigation.", "Simultaneous spatial sanitization logic."],
-    pdf: "documents/snake-presentation.pdf"
+    pdf: "images/project_ai_knee_rehab/ai_knee.pdf"
     // presentation: [ "disinfectant-img-1.jpg", "disinfectant-img-2.jpg" ]
   },
   "follower": {
@@ -239,7 +239,7 @@ const portfolioData = {
     subtitle: "Sensor Integration & Control Logic",
     summary: "Made a fast running bot which follows black line, worked with multiple sensors and different controllers and obtained a ideal competition winning robot.",
     bullets: ["High-speed sensory response.", "Optimal controller calibration."],
-    pdf: "documents/snake-presentation.pdf"
+    pdf: "images/project_ai_knee_rehab/ai_knee.pdf"
     // presentation: [ "follower-img-1.jpg" ]
   },
   "backpack": {
@@ -247,7 +247,7 @@ const portfolioData = {
     subtitle: "Programmable RGB LED Matrix",
     summary: "A smart backpack featuring a programmable pixel display built using a custom matrix of RGB LEDs.",
     bullets: ["Custom LED hardware assembly.", "Custom graphics mapping."],
-    pdf: "documents/snake-presentation.pdf"
+    pdf: "images/project_ai_knee_rehab/ai_knee.pdf"
     // presentation: [ "backpack-img-1.jpg" ]
   }
 };
