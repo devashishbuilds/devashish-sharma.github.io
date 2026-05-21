@@ -33,7 +33,7 @@
     </div>
 
     <div class="intro-image">
-      <img src="https://github.com/devashishbuilds/devashish-sharma.github.io/blob/main/images/self3.png?raw=true" alt="Devashish Sharma" />
+      <img src="images/self3.png" alt="Devashish Sharma" onerror="this.src='https://via.placeholder.com/400x500/1e2024/fa5b60?text=Profile+Image'" />
     </div>
   </section>
 
@@ -46,95 +46,142 @@
       <div class="factory-wrapper" id="factoryWrapper">
         <div class="factory-cell" id="factoryCell">
           
-          <div class="gantry-track"></div>
-
-          <div class="modern-stack-light">
-            <div class="segment red" id="lightRed"></div>
-            <div class="segment yellow" id="lightYellow"></div>
-            <div class="segment green active" id="lightGreen"></div>
-          </div>
-
-          <div class="platform-container">
-            <div class="drop-zone"></div>
-            <div class="support-leg left"></div>
-            <div class="support-leg right"></div>
-          </div>
-
-          <div class="conveyor-wrapper">
-            <div class="conveyor-track"></div>
-            <div class="rollers" id="conveyorRollers"></div>
-            <div class="conveyor" id="conveyor">
-              <div class="box" id="experience-box">EXPERIENCE</div>
-              <div class="box" id="projects-box">PROJECTS</div>
-              <div class="box" id="publications-box">PUBLICATIONS</div>
-              <div class="box" id="creative-box">CREATIVE</div>
-              <div class="box" id="contact-box">CONTACT</div>
+          <div class="factory-scene" id="factoryScene">
+            
+            <div class="metal-plate p1">
+              <div class="screw top-left"></div><div class="screw top-right"></div>
+              <div class="screw bot-left"></div><div class="screw bot-right"></div>
             </div>
-          </div>
-          
-          <div class="end-roller" id="endRoller"></div>
+            <div class="metal-plate p2">
+              <div class="screw top-left"></div><div class="screw top-right"></div>
+              <div class="screw bot-left"></div><div class="screw bot-right"></div>
+            </div>
+            <div class="metal-plate p3">
+              <div class="screw top-left"></div><div class="screw top-right"></div>
+              <div class="screw bot-left"></div><div class="screw bot-right"></div>
+            </div>
 
-          <div class="robot-ceiling-base" id="robotBase">
-            <div class="joint shoulder" id="jointShoulder">
-              <div class="joint elbow" id="jointElbow">
-                <div class="joint wrist" id="jointWrist">
-                  <div class="gripper" id="gripper">
-                    <div class="claw top"></div>
-                    <div class="claw bottom"></div>
+            <div class="electrical-cabinet">
+              <div class="cab-vent"></div>
+              <div class="cab-vent"></div>
+              <div class="cab-switch"></div>
+              <div class="cab-danger-sticker"></div>
+            </div>
+
+            <div class="drag-chain" id="dragChain"></div>
+
+            <div class="gantry-track"></div>
+
+            <div class="modern-stack-light">
+              <div class="segment red" id="lightRed"></div>
+              <div class="segment yellow" id="lightYellow"></div>
+              <div class="segment green active" id="lightGreen"></div>
+            </div>
+
+            <div class="platform-container">
+              <div class="drop-zone"></div>
+              <div class="support-leg left"></div>
+              <div class="support-leg right"></div>
+            </div>
+
+            <div class="conveyor-wrapper">
+              <div class="conveyor-track"></div>
+              <div class="rollers" id="conveyorRollers"></div>
+              
+              <div class="conveyor" id="conveyor">
+                <div class="box" id="experience-box">EXPERIENCE</div>
+                <div class="box" id="projects-box">PROJECTS</div>
+                <div class="box" id="publications-box">PUBLICATIONS</div>
+                <div class="box" id="creative-box">CREATIVE</div>
+                <div class="box" id="contact-box">CONTACT</div>
+                
+                <div class="box">EXPERIENCE</div>
+                <div class="box">PROJECTS</div>
+                <div class="box">PUBLICATIONS</div>
+                <div class="box">CREATIVE</div>
+                <div class="box">CONTACT</div>
+              </div>
+            </div>
+            
+            <div class="end-roller" id="endRoller"></div>
+
+            <div class="scanner-station">
+              <div class="scanner-pillar-left"></div>
+              <div class="scanner-pillar-right"></div>
+              <div class="scanner-arch-top"></div>
+              
+              <div class="scanner-beam" id="scannerBeam"></div>
+              
+              <div class="scanner-hmi">
+                <div class="scanner-text" id="scannerText">[ SYS: IDLE ]</div>
+                <div class="scanner-lights">
+                  <div class="s-light red" id="scanLightRed"></div>
+                  <div class="s-light green active" id="scanLightGreen"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="robot-ceiling-base" id="robotBase">
+              <div class="joint shoulder" id="jointShoulder">
+                <div class="joint elbow" id="jointElbow">
+                  <div class="joint wrist" id="jointWrist">
+                    <div class="gripper" id="gripper">
+                      <div class="claw top"></div>
+                      <div class="claw bottom"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+          </div>
+
+          <div class="teach-pendant-container">
+            <div class="teach-pendant">
+              <div class="tp-bumper top-left"></div>
+              <div class="tp-bumper top-right"></div>
+              
+              <div class="screen">
+                <div class="screen-title">Gantry TP - HMI</div>
+                <div id="statusText">READY</div>
+              </div>
+              
+              <div class="button-grid">
+                <button onclick="selectSection('experience')">EXPERIENCE</button>
+                <button onclick="selectSection('projects')">PROJECTS</button>
+                <button onclick="selectSection('publications')">PUBLICATIONS</button>
+                <button onclick="selectSection('creative')">CREATIVE</button>
+                <button onclick="selectSection('contact')">CONTACT</button>
+              </div>
+
+              <div class="tp-bottom">
+                <div class="d-pad">
+                  <button class="d-btn up">&#9650;</button>
+                  <button class="d-btn left">&#9664;</button>
+                  <div class="d-btn center-blank"></div>
+                  <button class="d-btn right">&#9654;</button>
+                  <button class="d-btn down">&#9660;</button>
+                </div>
+                
+                <div class="e-stop-wrapper">
+                  <div class="e-stop-label">E-STOP</div>
+                  <button class="emergency-circular" onclick="triggerEmergencyStop()"></button>
+                </div>
+              </div>
+
+            </div>
+            <div class="tp-cable"></div>
           </div>
 
         </div>
       </div>
     </div>
-
-    <div class="teach-pendant-container">
-      <div class="teach-pendant">
-        <div class="tp-bumper top-left"></div>
-        <div class="tp-bumper top-right"></div>
-        
-        <div class="screen">
-          <div class="screen-title">Gantry TP - HMI</div>
-          <div id="statusText">READY</div>
-        </div>
-        
-        <div class="button-grid">
-          <button onclick="selectSection('experience')">EXPERIENCE</button>
-          <button onclick="selectSection('projects')">PROJECTS</button>
-          <button onclick="selectSection('publications')">PUBLICATIONS</button>
-          <button onclick="selectSection('creative')">CREATIVE</button>
-          <button onclick="selectSection('contact')">CONTACT</button>
-        </div>
-
-        <div class="tp-bottom">
-          <div class="d-pad">
-            <button class="d-btn up">&#9650;</button>
-            <button class="d-btn left">&#9664;</button>
-            <div class="d-btn center-blank"></div>
-            <button class="d-btn right">&#9654;</button>
-            <button class="d-btn down">&#9660;</button>
-          </div>
-          
-          <div class="e-stop-wrapper">
-            <div class="e-stop-label">E-STOP</div>
-            <button class="emergency-circular" onclick="triggerEmergencyStop()"></button>
-          </div>
-        </div>
-
-      </div>
-      <div class="tp-cable"></div>
-    </div>
-
   </section>
 
   <div class="content-wrapper">
     
     <section id="experience" class="content-section">
       <h2>Education & Experience Roadmap</h2>
-      
       <div class="timeline-wrapper">
         <div class="timeline-line"></div>
         <div class="timeline">
@@ -147,7 +194,7 @@
             </div>
             <div class="timeline-connector top-conn"></div>
             <div class="timeline-logo-wrapper" onclick="openModal('hindustan')">
-              <img src="https://github.com/devashishbuilds/devashish-sharma.github.io/blob/main/images/logo/hits.png?raw=true" alt="Hindustan Logo" onerror="this.style.display='none'">
+              <img src="images/hits.png" alt="Hindustan Logo" onerror="this.style.display='none'">
             </div>
           </div>
 
@@ -159,7 +206,7 @@
             </div>
             <div class="timeline-connector bottom-conn"></div>
             <div class="timeline-logo-wrapper" onclick="openModal('atumx')">
-              <img src="https://github.com/devashishbuilds/devashish-sharma.github.io/blob/main/images/logo/atumx-logo.png?raw=true" alt="AtumX Logo" onerror="this.style.display='none'">
+              <img src="images/atumx-logo.png" alt="AtumX Logo" onerror="this.style.display='none'">
             </div>
           </div>
 
@@ -171,7 +218,7 @@
             </div>
             <div class="timeline-connector top-conn"></div>
             <div class="timeline-logo-wrapper" onclick="openModal('cair')">
-              <img src="https://github.com/devashishbuilds/devashish-sharma.github.io/blob/main/images/logo/cair.jfif?raw=true" alt="DRDO Logo" onerror="this.style.display='none'">
+              <img src="images/cair.jfif" alt="DRDO Logo" onerror="this.style.display='none'">
             </div>
           </div>
 
@@ -183,7 +230,7 @@
             </div>
             <div class="timeline-connector bottom-conn"></div>
             <div class="timeline-logo-wrapper" onclick="openModal('iitb')">
-              <img src="https://github.com/devashishbuilds/devashish-sharma.github.io/blob/main/images/logo/download.png?raw=true" alt="IIT Bombay Logo" onerror="this.style.display='none'">
+              <img src="images/download.png" alt="IIT Bombay Logo" onerror="this.style.display='none'">
             </div>
           </div>
 
@@ -195,7 +242,7 @@
             </div>
             <div class="timeline-connector top-conn"></div>
             <div class="timeline-logo-wrapper" onclick="openModal('bologna-edu')">
-              <img src="https://github.com/devashishbuilds/devashish-sharma.github.io/blob/main/images/logo/uinbo.png?raw=true" alt="Bologna Logo" onerror="this.style.display='none'">
+              <img src="images/uinbo.png" alt="Bologna Logo" onerror="this.style.display='none'">
             </div>
           </div>
 
@@ -207,7 +254,7 @@
             </div>
             <div class="timeline-connector bottom-conn"></div>
             <div class="timeline-logo-wrapper" onclick="openModal('bologna-exp')">
-              <img src="https://github.com/devashishbuilds/devashish-sharma.github.io/blob/main/images/logo/uinbo.png?raw=true" alt="Bologna Logo" onerror="this.style.display='none'">
+              <img src="images/uinbo.png" alt="Bologna Logo" onerror="this.style.display='none'">
             </div>
           </div>
 
@@ -218,11 +265,10 @@
     <section id="projects" class="content-section">
       <div class="projects-container">
         <h2>Engineering Projects</h2>
-        
         <div class="bento-gallery">
           
           <div class="bento-item large" onclick="openModal('snake')">
-            <img src="https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_snake/snake_robo.JPG?raw=true" alt="Snake Robot" onerror="this.src='https://via.placeholder.com/600x400/222/fff?text=Serpenoid+Robot'">
+            <img src="images/snake-robot.jpg" alt="Snake Robot" onerror="this.src='https://via.placeholder.com/600x400/222/fff?text=Serpenoid+Robot'">
             <div class="bento-overlay">
               <h3>Serpenoid Robots</h3>
               <p>Unmanned Exploration Locomotion</p>
@@ -230,15 +276,15 @@
           </div>
 
           <div class="bento-item tall" onclick="openModal('knee')">
-            <img src="https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_ai_knee_rehab/ansys.png?raw=true" alt="Knee Rehab" onerror="this.src='https://via.placeholder.com/300x500/222/fff?text=AI+Rehab'">
+            <img src="images/knee-rehab.jpg" alt="Knee Rehab" onerror="this.src='https://via.placeholder.com/300x500/222/fff?text=AI+Rehab'">
             <div class="bento-overlay">
               <h3>AI Knee Rehab</h3>
-              <p>Healthcare Automation</p>
+              <p>Diagnostic Automation</p>
             </div>
           </div>
 
           <div class="bento-item" onclick="openModal('swarm')">
-            <img src="https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_swarm/swarm.png?raw=true" alt="Swarm Robots" onerror="this.src='https://via.placeholder.com/300x300/222/fff?text=Swarm'">
+            <img src="images/swarm-robot.jpg" alt="Swarm Robots" onerror="this.src='https://via.placeholder.com/300x300/222/fff?text=Swarm'">
             <div class="bento-overlay">
               <h3>Robot Swarm</h3>
               <p>Cooperative Agents</p>
@@ -246,7 +292,7 @@
           </div>
 
           <div class="bento-item" onclick="openModal('disinfectant')">
-            <img src="https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_disinfectant_robo/disinfect_robo.png?raw=true" alt="Disinfectant Bot" onerror="this.src='https://via.placeholder.com/300x300/222/fff?text=Disinfectant+Bot'">
+            <img src="images/disinfectant-bot.jpg" alt="Disinfectant Bot" onerror="this.src='https://via.placeholder.com/300x300/222/fff?text=Disinfectant+Bot'">
             <div class="bento-overlay">
               <h3>Disinfectant Bot</h3>
               <p>Autonomous Sanitization</p>
@@ -254,7 +300,7 @@
           </div>
 
           <div class="bento-item wide" onclick="openModal('follower')">
-            <img src="https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_line_follower/line_follow.jpg?raw=true" alt="Line Follower" onerror="this.src='https://via.placeholder.com/600x300/222/fff?text=Fastest+Line+Follower'">
+            <img src="images/follower.jpg" alt="Line Follower" onerror="this.src='https://via.placeholder.com/600x300/222/fff?text=Fastest+Line+Follower'">
             <div class="bento-overlay">
               <h3>Line Follower</h3>
               <p>Sensor Integration & Control</p>
@@ -262,10 +308,34 @@
           </div>
 
           <div class="bento-item" onclick="openModal('backpack')">
-            <img src="https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_smart_bag/bag1.png?raw=true" alt="Backpack" onerror="this.src='https://via.placeholder.com/300x300/222/fff?text=RGB+Backpack'">
+            <img src="images/backpack.jpg" alt="Backpack" onerror="this.src='https://via.placeholder.com/300x300/222/fff?text=RGB+Backpack'">
             <div class="bento-overlay">
               <h3>Smart Backpack</h3>
               <p>Programmable LED Matrix</p>
+            </div>
+          </div>
+
+          <div class="bento-item" onclick="openModal('desk-manipulator')">
+            <img src="images/desk-manipulator.jpg" alt="Desk Manipulator" onerror="this.src='https://via.placeholder.com/300x300/222/fff?text=Desk+Manipulator'">
+            <div class="bento-overlay">
+              <h3>3-DOF Desk Manipulator</h3>
+              <p>Compact Robotic Arm</p>
+            </div>
+          </div>
+
+          <div class="bento-item wide" onclick="openModal('knee-robot')">
+            <img src="images/knee-robot.jpg" alt="Knee Robot" onerror="this.src='https://via.placeholder.com/600x300/222/fff?text=Knee+Robot'">
+            <div class="bento-overlay">
+              <h3>Knee Rehab Robot</h3>
+              <p>Physical Assistive Device</p>
+            </div>
+          </div>
+
+          <div class="bento-item wide" onclick="openModal('ambient-light')">
+            <img src="images/ambient-light.jpg" alt="Ambient Light" onerror="this.src='https://via.placeholder.com/600x300/222/fff?text=Ambient+Light'">
+            <div class="bento-overlay">
+              <h3>Ambient Screen Light</h3>
+              <p>Responsive Illumination</p>
             </div>
           </div>
 
@@ -279,16 +349,16 @@
         <a href="#" target="_blank" class="publication-card">
           <div class="pub-icon">&#128212;</div>
           <div class="pub-details">
-            <h3>A Multi-Gait Strategy for Adaptive Concertina Locomotion in a Snake Robot Navigating Through Channels of Varying Width</h3>
-            <p>Accepted for presentation at the 23rd IFAC World Congress, Busan, South Korea, August 23–28, 2026</p>
+            <h3>A Multi-Gait Strategy for Adaptive Concertina Locomotion in a Snake Robot</h3>
+            <p>Accepted: 23rd IFAC World Congress, Busan, South Korea, 2026</p>
             <span class="read-more">TO BE PUBLISHED &rarr;</span>
           </div>
         </a>
         <a href="https://ieeexplore.ieee.org/abstract/document/11127631" target="_blank" class="publication-card">
           <div class="pub-icon">&#128212;</div>
           <div class="pub-details">
-            <h3>Adaptive Concertina Locomotion of a Robotic Snake Through Narrow Uncertain Channels</h3>
-            <p>IEEE- International Conference on Robotics and Automation (ICRA), 2025</p>
+            <h3>Adaptive Concertina Locomotion Through Narrow Uncertain Channels</h3>
+            <p>IEEE- ICRA, 2025</p>
             <span class="read-more">Read Publication &rarr;</span>
           </div>
         </a>
@@ -303,7 +373,7 @@
         <a href="https://pubs.aip.org/aip/acp/article-abstract/2946/1/020003/2920557/Design-and-evaluation-of-various-knee-assistive" target="_blank" class="publication-card">
           <div class="pub-icon">&#128212;</div>
           <div class="pub-details">
-            <h3>Design and evaluation of various knee assistive mechanisms for rehabilitation</h3>
+            <h3>Design and evaluation of various knee assistive mechanisms</h3>
             <p>AIP Conference Proceedings, 2023</p>
             <span class="read-more">Read Publication &rarr;</span>
           </div>
@@ -314,25 +384,41 @@
     <section id="creative" class="content-section">
       <h2>Beyond the Desk</h2>
       <p class="creative-desc">When I am not programming robots or building automation workflows, I channel my energy into creative and physical pursuits.</p>
-      
       <div class="creative-grid">
-        <div class="creative-card">
-          <div class="creative-icon">&#128736;</div>
+        <div class="creative-card clickable" onclick="openModal('product-design')">
+          <div class="mini-carousel">
+            <img src="images/pd1.jpg" class="active" alt="Product Design 1">
+            <img src="images/pd2.jpg" alt="Product Design 2">
+            <img src="images/pd3.jpg" alt="Product Design 3">
+          </div>
           <h3>Product Design</h3>
           <p>Conceptualizing and drafting functional, ergonomic solutions that blend engineering constraints with aesthetic appeal.</p>
         </div>
-        <div class="creative-card">
-          <div class="creative-icon">&#128247;</div>
+
+        <div class="creative-card clickable" onclick="openModal('photography')">
+          <div class="mini-carousel">
+            <img src="images/photo1.jpg" class="active" alt="Photography 1">
+            <img src="images/photo2.jpg" alt="Photography 2">
+            <img src="images/photo3.jpg" alt="Photography 3">
+          </div>
           <h3>Photography</h3>
           <p>Capturing structural details, landscapes, and the subtle interplay of light and geometry in everyday environments.</p>
         </div>
-        <div class="creative-card">
-          <div class="creative-icon">&#127956;</div>
+
+        <div class="creative-card clickable" onclick="openModal('hiking')">
+          <div class="mini-carousel">
+            <img src="images/hike1.jpg" class="active" alt="Hiking 1">
+            <img src="images/hike2.jpg" alt="Hiking 2">
+          </div>
           <h3>Hiking</h3>
           <p>Exploring the outdoors and challenging physical limits on the trails to reset the mind after deep engineering work.</p>
         </div>
-        <div class="creative-card">
-          <div class="creative-icon">&#127912;</div>
+
+        <div class="creative-card clickable" onclick="openModal('sketch')">
+          <div class="mini-carousel">
+            <img src="images/sketch1.jpg" class="active" alt="Sketch 1">
+            <img src="images/sketch2.jpg" alt="Sketch 2">
+          </div>
           <h3>Sketch & Paint</h3>
           <p>Translating mechanical ideas to paper and experimenting with freehand artistic expression and color theory.</p>
         </div>
@@ -341,21 +427,18 @@
 
     <section id="contact" class="content-section">
       <h2>Contact & Connect</h2>
-      
       <div class="contact-layout">
         <div class="contact-info">
           <p class="contact-desc">Feel free to reach out for collaborations, project inquiries, or just to say hi!</p>
-          
           <div class="social-links">
             <a href="mailto:devashish.sharm@studio.unibo.it" class="social-btn email-btn">📧 Email Me</a>
             <a href="https://www.linkedin.com/in/devashish-sharma-15aaa0153" target="_blank" class="social-btn in-btn">🔗 LinkedIn</a>
             <a href="https://github.com/devashishbuilds" target="_blank" class="social-btn git-btn">💻 GitHub</a>
           </div>
         </div>
-
         <div class="linkedin-embed-box">
           <h3>Latest Update</h3>
-            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7330384042942517248?collapsed=1" height="541" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>          
+            <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7330384042942517248?collapsed=1" height="350" width="100%" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>          
         </div>
       </div>
     </section>
@@ -372,9 +455,7 @@
       <div class="modal-right">
         <h2 id="modalTitle">Title</h2>
         <h4 id="modalSubtitle">Subtitle</h4>
-        
         <p id="modalSummary" class="modal-summary"></p>
-        
         <div id="modalTextContent" class="modal-text-content">
           <ul id="modalBullets" class="modal-bullets"></ul>
         </div>
