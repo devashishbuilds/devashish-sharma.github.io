@@ -372,7 +372,7 @@ const portfolioData = {
     subtitle: "Responsive Background Illumination System",
     summary: "Created an immersive ambient background lighting system that dynamically extends screen colors to the surrounding environment. The system samples display pixels in real-time and maps them to an addressable RGB LED strip behind the monitor.",
     bullets: ["Real-time screen capture and color processing.", "Microcontroller integration with addressable LEDs.", "Low-latency visual synchronization."],
-    presentation: [ "images/ambient-light.jpg" ]
+    presentation: "images/project_ambient_light/sample_ambient_light.pdf"
   },
 
   // ================= EXTRACURRICULAR DATA =================
