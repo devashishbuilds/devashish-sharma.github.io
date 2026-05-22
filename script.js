@@ -137,7 +137,11 @@ function updateStatus(text) { statusText.innerHTML = text; }
 
 function moveConveyor(section) {
   return new Promise((resolve) => {
-    if(conveyorLoop) conveyorLoop.kill();
+    // 1. MUST kill existing loops here so they don't fight the new targeted speed
+    if (beltRollerTween) beltRollerTween.kill();
+    if (beltEndTween) beltEndTween.kill();
+    if (conveyorLoop) conveyorLoop.kill();
+    scannerBeam.classList.remove("off");
     
     let targetBase = positions[section]; 
     let currentX = parseFloat(gsap.getProperty(conveyor, "x")) || 0;
@@ -160,9 +164,13 @@ function moveConveyor(section) {
     // Custom Speed logic integration
     let duration = distance / (70 / CONVEYOR_SPEED_FACTOR); 
     
-    // Sync rollers to faster speed
+    // Calculate exact degrees the end roller needs to spin to match the belt distance
+    // Ratio: 210 pixels of belt movement = 360 degrees of rotation
+    let rollerRotation = distance * (360 / 210);
+
+    // Sync rollers and end wheel perfectly to the new high-speed duration
     gsap.to(conveyorRollers, { backgroundPositionX: `-=${distance}`, duration: duration, ease: "none" });
-    gsap.to(endRoller, { rotation: `-=360`, duration: duration, repeat: -1, ease: "none" });
+    gsap.to(endRoller, { rotation: `-=${rollerRotation}`, duration: duration, ease: "none" });
 
     let scanSim = setInterval(() => {
         let curr = (parseFloat(gsap.getProperty(conveyor, "x")) % 1050) || 0;
@@ -191,8 +199,8 @@ function moveConveyor(section) {
         onComplete: () => {
             clearInterval(scanSim);
             updateScanner(`[ MATCH: ${section.toUpperCase()} ]`, "green");
-            stopBelt();
-            gsap.set(conveyor, { x: positions[section] });
+            stopBelt(); // Lock it completely
+            gsap.set(conveyor, { x: positions[section] }); // Snap perfectly to grid
             resolve();
         }
     });
@@ -311,8 +319,8 @@ const portfolioData = {
     subtitle: "Bio-Inspired Adaptive Locomotion",
     summary: "Developed a bio-inspired snake robot with multiple rotary joints, driven by Dynamixel MX-64R motors, to achieve adaptive locomotion in straight and narrow channels. Designed and implemented a control algorithm based on traveling wave motion, enabling selective anchoring using current feedback for highly efficient propulsion.",
     bullets: ["Hardware fabricated using FDM and SLA.", "Implemented traveling wave motion algorithms.", "Terrain anchoring via current feedback."],
-    pdf: "documents/snake-presentation.pdf", 
-    presentation: [ "images/snake-img-1.jpg" ]
+    pdf: "images/project_snake/snake_robot.pdf", 
+    //presentation: [ "images/snake-img-1.jpg" ]
   },
   "knee": {
     title: "AI Knee Rehabilitation Mechanism",
