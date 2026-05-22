@@ -346,7 +346,7 @@ const portfolioData = {
     subtitle: "Sensor Integration & Control Logic",
     summary: "Made a fast running bot which follows black line, worked with multiple sensors and different controllers and obtained a ideal competition winning robot.",
     bullets: ["High-speed sensory response.", "Optimal controller calibration."],
-    presentation: [ "images/follower-img-1.jpg" ]
+    pdf: "images/project_line_follower/Line_follower.pdf"
   },
   "backpack": {
     title: "Next Generation Backpack",
