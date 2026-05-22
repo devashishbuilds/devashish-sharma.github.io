@@ -650,7 +650,7 @@ if (profileImg && speechBubble) {
   const triggerPop = () => {
     setTimeout(() => {
       speechBubble.classList.add('pop-in');
-    }, 1500); // 1.5 second delay
+    }, 1000); // 1.5 second delay
   };
 
   // Check if image is already loaded (cached), otherwise wait for load event
