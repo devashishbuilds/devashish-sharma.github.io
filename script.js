@@ -1,7 +1,7 @@
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 const conveyor = document.getElementById("conveyor");
-const conveyorRollers = document.getElementById("conveyorRollers");
+const conveyorRollers = document.getElementById("conveyorRollers"); // Fetched but kept static
 const endRoller = document.getElementById("endRoller");
 const statusText = document.getElementById("statusText");
 
@@ -18,16 +18,16 @@ let currentSection = null;
 let isMoving = false; 
 let isEmergencyStopped = false;
 let currentScale = 1;
-// You can tune the speed multiplier here (Lower = Faster!)
-const CONVEYOR_SPEED_FACTOR = 0.8; 
+
+// CHANGED: Lowered significantly to make the belt speed much faster during selection
+const CONVEYOR_SPEED_FACTOR = 0.25; 
 
 // ================= INFINITE CONVEYOR LOGIC =================
-let beltRollerTween = gsap.to(conveyorRollers, { backgroundPositionX: "-=210", duration: 3, repeat: -1, ease: "none" });
+// REMOVED beltRollerTween so small rollers remain completely static
 let beltEndTween = gsap.to(endRoller, { rotation: "-=360", duration: 3, repeat: -1, ease: "none" });
 let conveyorLoop;
 
 function startBelt() {
-  beltRollerTween.play();
   beltEndTween.play();
   scannerBeam.classList.remove("off");
   
@@ -45,7 +45,6 @@ function startBelt() {
 }
 
 function stopBelt() {
-  beltRollerTween.pause();
   beltEndTween.pause();
   scannerBeam.classList.add("off");
   if (conveyorLoop) conveyorLoop.pause();
@@ -138,7 +137,6 @@ function updateStatus(text) { statusText.innerHTML = text; }
 function moveConveyor(section) {
   return new Promise((resolve) => {
     // 1. MUST kill existing loops here so they don't fight the new targeted speed
-    if (beltRollerTween) beltRollerTween.kill();
     if (beltEndTween) beltEndTween.kill();
     if (conveyorLoop) conveyorLoop.kill();
     scannerBeam.classList.remove("off");
@@ -168,8 +166,7 @@ function moveConveyor(section) {
     // Ratio: 210 pixels of belt movement = 360 degrees of rotation
     let rollerRotation = distance * (360 / 210);
 
-    // Sync rollers and end wheel perfectly to the new high-speed duration
-    gsap.to(conveyorRollers, { backgroundPositionX: `-=${distance}`, duration: duration, ease: "none" });
+    // Sync ONLY the end wheel perfectly to the new high-speed duration
     gsap.to(endRoller, { rotation: `-=${rollerRotation}`, duration: duration, ease: "none" });
 
     let scanSim = setInterval(() => {
