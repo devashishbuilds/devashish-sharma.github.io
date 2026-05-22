@@ -387,21 +387,21 @@ const portfolioData = {
     subtitle: "Beyond the Desk",
     summary: "Capturing structural details, landscapes, and the subtle interplay of light and geometry in everyday environments.",
     bullets: [],
-    presentation: ["images/photo1.jpg", "images/photo2.jpg", "images/photo3.jpg"]
+    presentation: ["images/extra/ph1.jpg", "images/extra/ph2.jpg", "images/extra/ph3.jpg", "images/extra/ph4.jpg", "images/extra/ph5.jpg"]
   },
   "hiking": {
     title: "Hiking & Outdoors",
     subtitle: "Beyond the Desk",
     summary: "Exploring the outdoors and challenging physical limits on the trails to reset the mind after deep engineering work.",
     bullets: [],
-    presentation: ["images/hike1.jpg", "images/hike2.jpg"]
+    presentation: ["images/extra/hike1.jpg"]
   },
   "sketch": {
     title: "Sketch & Paint",
     subtitle: "Beyond the Desk",
     summary: "Translating mechanical ideas to paper and experimenting with freehand artistic expression and color theory.",
     bullets: [],
-    presentation: ["images/sketch1.jpg", "images/sketch2.jpg"]
+    presentation: ["images/extra/sk1.jpg", "images/extra/sk2.jpg", "images/extra/sk3.jpg", "images/extra/sk4.jpg", "images/extra/sk5.jpg",  "images/extra/sk6.jpg"]
   }
 };
 
