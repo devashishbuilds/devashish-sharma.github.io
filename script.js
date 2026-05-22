@@ -341,22 +341,17 @@ const portfolioData = {
     presentation: [] 
   },
   
-  "iitb-intern": { 
-    title: "Research Intern – Snake Robot Project (ISRO-funded)", 
-    subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jan 2024 – Jun 2024)", 
+  "iitb": { 
+    title: "ISRO-funded Snake Robot Project", 
+    subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jan 2024 – Nov 2024)", 
     bullets: [
+      "HEADING:Research Intern (Jan 2024 – Jun 2024)",
       "Designed and fabricated mechanical hardware for a snake-like robot intended for locomotion in confined spaces — created part drawings and 3D assemblies in SolidWorks, and produced components via FDM and SLA 3D printing.",
       "Developed and implemented mechanical test methods to evaluate link durability, motor coupling reliability, and structural performance under varying torque conditions.",
       "Designed experimental procedures to verify actuator specifications including torque behaviour, repeatability, and load response using structured data collection workflows.",
-      "Tools & Skills: SolidWorks, FDM & SLA 3D Printing, CNC Machining, Mechanical Fabrication & Assembly, Torque & Durability Testing."
-    ], 
-    presentation: [] 
-  },
-  
-  "iitb-associate": { 
-    title: "Project Associate – Snake Robot Project (ISRO-funded)", 
-    subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jul 2024 – Nov 2024)", 
-    bullets: [
+      "Tools & Skills: SolidWorks, FDM & SLA 3D Printing, CNC Machining, Mechanical Fabrication & Assembly, Torque & Durability Testing.",
+      
+      "HEADING:Project Associate (Jul 2024 – Nov 2024)",
       "Developed Python scripts for sensor and actuator data logging, automated performance evaluation, and visualization of experimental results across prototype validation cycles.",
       "Conducted repeatability and robustness testing during prototype validation; performed structured troubleshooting and root-cause analysis on functional deviations to resolve hardware-software integration issues.",
       "Extended actuator characterization work — refining test procedures for torque behaviour and load response based on prior experimental findings.",
@@ -540,9 +535,19 @@ function openModal(id) {
 
   const bulletsContainer = document.getElementById('modalBullets');
   if (data.bullets && data.bullets.length > 0) {
-    bulletsContainer.innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
+    bulletsContainer.innerHTML = data.bullets.map(b => {
+      // If the bullet starts with our special tag, format it as a Sub-Heading!
+      if (b.startsWith("HEADING:")) {
+        return `<li style="list-style: none; margin-left: 0px; font-size: 1.2rem; color: #fa5b60; font-weight: bold; margin-top: 25px; margin-bottom: 10px; border-bottom: 1px solid #334; padding-bottom: 5px;">${b.replace("HEADING:", "")}</li>`;
+      }
+      // Otherwise, render a normal bullet point
+      return `<li>${b}</li>`;
+    }).join('');
+    
     document.getElementById('modalTextContent').style.display = 'block';
-  } else { document.getElementById('modalTextContent').style.display = 'none'; }
+  } else { 
+    document.getElementById('modalTextContent').style.display = 'none'; 
+  }
 
   const presentationContainer = document.getElementById('presentationContainer');
   presentationContainer.innerHTML = ''; 
