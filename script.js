@@ -320,7 +320,7 @@ const portfolioData = {
     subtitle: "Diagnostic Healthcare Automation",
     summary: "The system is able to tell whether the patient is suffering from Osteoarthritis or not and if yes at what level of the same. In addition to this, it suggests the actuation parameters of the assistive mechanism such that rehabilitation process can be made faster with a good accuracy.",
     bullets: ["AI-based Osteoarthritis assessment.", "Dynamic assistive mechanism parameter suggestion."],
-    pdf: "https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_ai_knee_rehab/ai_knee.pdf"
+    pdf: "images/project_ai_knee_rehab/ai_knee.pdf"
     //presentation: [ "images/knee-img-1.jpg" ]
   },
   "swarm": {
@@ -365,14 +365,14 @@ const portfolioData = {
     subtitle: "Mechanical Assistive Device for Physical Therapy",
     summary: "Developed a physical knee rehabilitation robot focused on providing safe, controlled continuous passive motion (CPM) to assist patients recovering from knee injuries. This hardware implementation is designed with critical safety constraints in mind.",
     bullets: ["Ergonomic mechanical linkage design.", "Safety-first actuation limits.", "Torque and velocity control for patient comfort."],
-    presentation: [ "images/knee-robot.jpg" ]
+    pdf: "images/project_knee_rehab/knee_rehab_robot.pdf"
   },
   "ambient-light": {
     title: "Ambient Screen Light",
     subtitle: "Responsive Background Illumination System",
     summary: "Created an immersive ambient background lighting system that dynamically extends screen colors to the surrounding environment. The system samples display pixels in real-time and maps them to an addressable RGB LED strip behind the monitor.",
     bullets: ["Real-time screen capture and color processing.", "Microcontroller integration with addressable LEDs.", "Low-latency visual synchronization."],
-    presentation: "images/project_ambient_light/sample_ambient_light.pdf"
+    pdf: "images/project_ambient_light/sample_al.pdf"
   },
 
   // ================= EXTRACURRICULAR DATA =================
