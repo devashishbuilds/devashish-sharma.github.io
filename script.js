@@ -639,3 +639,24 @@ setInterval(() => {
     images[activeIndex].classList.add('active');
   });
 }, 3000); // Changes image every 3 seconds (3000ms)
+
+
+// ================= SPEECH BUBBLE POP ANIMATION =================
+const profileImg = document.getElementById('profileImage');
+const speechBubble = document.getElementById('speechBubble');
+
+if (profileImg && speechBubble) {
+  // Function to trigger the pop
+  const triggerPop = () => {
+    setTimeout(() => {
+      speechBubble.classList.add('pop-in');
+    }, 1500); // 1.5 second delay
+  };
+
+  // Check if image is already loaded (cached), otherwise wait for load event
+  if (profileImg.complete) {
+    triggerPop();
+  } else {
+    profileImg.addEventListener('load', triggerPop);
+  }
+}
