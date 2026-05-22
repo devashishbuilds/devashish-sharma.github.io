@@ -303,13 +303,93 @@ function triggerEmergencyStop() {
 // ================= UNIVERSAL MODAL LOGIC =================
 const portfolioData = {
   // Roadmap Data
-  "hindustan": { title: "B.Tech in Mechatronics Engineering", subtitle: "Hindustan Institute of Technology and Science | Chennai, India (Nov 2020 – Jun 2024)", bullets: [], presentation: [] },
-  "atumx": { title: "Engineering Intern – Robotics, Simulation & Assembly", subtitle: "AtumX | Chennai, India (Jun 2022 – Nov 2022)", bullets: ["Designed mechanical components in SolidWorks, producing 2D drawings and 3D assemblies, and manufactured parts using both additive and subtractive processes.", "Managed and maintained component lists and assembly documentation, supporting accurate BOM tracking.", "Collaborated closely with cross-functional engineering teams to validate design assumptions.", "Assisted in mechanical assembly, functional testing, and structured troubleshooting of robotic subsystems.", "Used ROS for robot simulation and motion validation to support design verification prior to hardware build."], presentation: [] },
-  "cair": { title: "Research Intern – Robotics & Computer Vision", subtitle: "Centre for Artificial Intelligence & Robotics (CAIR), DRDO | Bangalore, India (Jun 2023 – Aug 2023)", bullets: ["Conducted an in depth literature survey on dual-arm serial manipulators (ABB- YuMi Robot) for vision-based grasp pose estimation.", "Analyzed grasp planning strategies integrating robotic kinematics and computer vision methods.", "Studied perception driven manipulation approaches for improving grasp reliability in robotic systems."], presentation: [] },
-  "iitb": { title: "Research Intern & Project Associate", subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jan 2024 – Nov 2024)", bullets: ["Designed and fabricated mechanical hardware for a snake-like robot, creating part drawings and assemblies in SolidWorks and producing components via FDM and SLA 3D printing technologies.", "Developed and implemented mechanical test methods to evaluate link durability, motor coupling reliability, and structural performance.", "Designed experimental procedures to verify actuator specifications including torque behaviour, repeatability, and load response.", "Developed Python scripts for sensor and actuator data logging, performance evaluation, and visualization of experimental results.", "Conducted repeatability and robustness testing during prototype validation, performing structured troubleshooting and root-cause analysis."], presentation: [] },
-  "bologna-edu": { title: "Master’s in Automation Engineering", subtitle: "Alma Mater Studiorum – Università di Bologna | Bologna, Italy (Nov 2024 – Present)", bullets: [], presentation: [] },
-  "bologna-exp": { title: "Automation & Manufacturing Intern", subtitle: "University of Bologna – Montecuccolino Laboratory | Bologna, Italy (Oct 2025 – Dec 2025)", bullets: ["Designed and conducted experiments for robotics test bench calibration, sensor validation and repeatability analysis, including 3D modelling and fabrication using FDM technologies.", "Characterized performance and reliability of electromechanical prototypes against defined specifications.", "Defined structured test procedures and validation workflows; documented results and failure modes for engineering review.", "Implemented control algorithms in TwinCAT for system verification."], presentation: [] },
-
+  "hindustan": { 
+  title: "B.Tech in Mechatronics Engineering", 
+  subtitle: "Hindustan Institute of Technology and Science | Chennai, India (Nov 2020 – Jun 2024)", 
+  bullets: [
+    "Studied core mechatronics disciplines including mechanical design, embedded systems, control theory, and robotics.",
+    "Built hands-on experience across electromechanical systems, sensor integration, and automation fundamentals.",
+    "Executed multiple hardware projects spanning robot design, fabrication, and control — from concept to working prototype.",
+    "Tools & Skills: SolidWorks, ANSYS Mechanical, Arduino, Python, MATLAB, 3D Printing (FDM/SLA), CNC, Power Tools & Manual Fabrication."
+    ], 
+    presentation: [] 
+  },
+  
+  "atumx": { 
+    title: "Engineering Intern – Robotics, Simulation & Assembly", 
+    subtitle: "AtumX | Chennai, India (Jun 2022 – Nov 2022)", 
+    bullets: [
+      "Designed mechanical components in SolidWorks, producing 2D drawings and 3D assemblies; manufactured parts using additive (FDM) and subtractive (CNC) processes to validate design feasibility for physical prototyping.",
+      "Assisted in mechanical assembly, functional testing, and structured troubleshooting of robotic subsystems — including actuator integration and joint-level verification.",
+      "Used ROS for robot simulation and motion validation, supporting design verification prior to committing to hardware build.",
+      "Managed component lists and assembly documentation, supporting accurate BOM tracking across the development lifecycle.",
+      "Collaborated with cross-functional engineering teams to validate design assumptions and resolve feasibility issues before physical build.",
+      "Tools & Skills: SolidWorks, ROS, FDM 3D Printing, CNC Machining, Mechanical Assembly, BOM Documentation."
+    ], 
+    presentation: [] 
+  },
+  
+  "cair": { 
+    title: "Research Intern – Robotics & Computer Vision", 
+    subtitle: "Centre for Artificial Intelligence & Robotics (CAIR), DRDO | Bangalore, India (Jun 2023 – Aug 2023)", 
+    bullets: [
+      "Conducted a structured literature survey on dual-arm serial manipulators — specifically the ABB YuMi robot — focusing on vision-based grasp pose estimation techniques.",
+      "Analyzed grasp planning strategies that integrate robotic kinematics with computer vision pipelines for reliable object interaction.",
+      "Studied perception-driven manipulation approaches and their role in improving grasp reliability and adaptability in unstructured environments.",
+      "Tools & Skills: ABB YuMi, Computer Vision, Robotic Kinematics, Grasp Planning, Academic Research & Literature Review."
+    ], 
+    presentation: [] 
+  },
+  
+  "iitb-intern": { 
+    title: "Research Intern – Snake Robot Project (ISRO-funded)", 
+    subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jan 2024 – Jun 2024)", 
+    bullets: [
+      "Designed and fabricated mechanical hardware for a snake-like robot intended for locomotion in confined spaces — created part drawings and 3D assemblies in SolidWorks, and produced components via FDM and SLA 3D printing.",
+      "Developed and implemented mechanical test methods to evaluate link durability, motor coupling reliability, and structural performance under varying torque conditions.",
+      "Designed experimental procedures to verify actuator specifications including torque behaviour, repeatability, and load response using structured data collection workflows.",
+      "Tools & Skills: SolidWorks, FDM & SLA 3D Printing, CNC Machining, Mechanical Fabrication & Assembly, Torque & Durability Testing."
+    ], 
+    presentation: [] 
+  },
+  
+  "iitb-associate": { 
+    title: "Project Associate – Snake Robot Project (ISRO-funded)", 
+    subtitle: "Indian Institute of Technology (IIT) Bombay | Mumbai, India (Jul 2024 – Nov 2024)", 
+    bullets: [
+      "Developed Python scripts for sensor and actuator data logging, automated performance evaluation, and visualization of experimental results across prototype validation cycles.",
+      "Conducted repeatability and robustness testing during prototype validation; performed structured troubleshooting and root-cause analysis on functional deviations to resolve hardware-software integration issues.",
+      "Extended actuator characterization work — refining test procedures for torque behaviour and load response based on prior experimental findings.",
+      "Tools & Skills: Python, MATLAB, ROS, Sensor & Actuator Integration, Data Logging & Visualization, Repeatability Analysis, Root-Cause Troubleshooting."
+    ], 
+    presentation: [] 
+  },
+  
+  "bologna-edu": { 
+    title: "Master's in Automation Engineering", 
+    subtitle: "Alma Mater Studiorum – Università di Bologna | Bologna, Italy (Nov 2024 – Present)", 
+    bullets: [
+      "Pursuing advanced coursework in automation systems, control engineering, robotics, and industrial automation.",
+      "Research focus on electromechanical system characterization and assistive rehabilitation mechanisms — resulting in publications at ICRA 2025 and IFAC 2026.",
+      "Actively engaged in lab-based experimental work, combining control theory with hands-on hardware validation.",
+      "Tools & Skills: MATLAB/Simulink, Python, ROS, TwinCAT, Control Systems, Experimental Validation."
+    ], 
+    presentation: [] 
+  },
+  
+  "bologna-exp": { 
+    title: "Automation & Manufacturing Intern", 
+    subtitle: "University of Bologna – Montecuccolino Laboratory | Bologna, Italy (Oct 2025 – Dec 2025)", 
+    bullets: [
+      "Designed and conducted calibration experiments for a robotics test bench — covering sensor validation, repeatability analysis, and deviation characterization against defined performance specifications.",
+      "Performed 3D modelling and fabricated test fixtures and mounting components using FDM 3D printing to support bench setup and experimental configuration.",
+      "Characterized performance and reliability of electromechanical prototypes, quantifying repeatability and deviation metrics for engineering review.",
+      "Defined structured test procedures and validation workflows; documented experimental results, failure modes, and corrective actions for formal engineering records.",
+      "Implemented and verified control algorithms in TwinCAT (Beckhoff) for closed-loop system verification on the test bench.",
+      "Tools & Skills: TwinCAT (Beckhoff), SolidWorks, FDM 3D Printing, Sensor Calibration, Electromechanical Characterization, Test Documentation."
+    ], 
+    presentation: [] 
+  },  
   // Project Data
   "snake": {
     title: "Serpenoid Robots for Exploration",
