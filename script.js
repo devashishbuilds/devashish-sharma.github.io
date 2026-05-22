@@ -320,7 +320,8 @@ const portfolioData = {
     subtitle: "Diagnostic Healthcare Automation",
     summary: "The system is able to tell whether the patient is suffering from Osteoarthritis or not and if yes at what level of the same. In addition to this, it suggests the actuation parameters of the assistive mechanism such that rehabilitation process can be made faster with a good accuracy.",
     bullets: ["AI-based Osteoarthritis assessment.", "Dynamic assistive mechanism parameter suggestion."],
-    presentation: [ "images/knee-img-1.jpg" ]
+    pdf: "https://github.com/devashishbuilds/devashish-sharma.io/blob/main/images/project_ai_knee_rehab/ai_knee.pdf"
+    //presentation: [ "images/knee-img-1.jpg" ]
   },
   "swarm": {
     title: "Homogeneous Swarm of Cooperative Robots",
@@ -348,7 +349,7 @@ const portfolioData = {
     subtitle: "Programmable RGB LED Matrix",
     summary: "A smart backpack featuring a programmable pixel display built using a custom matrix of RGB LEDs.",
     bullets: ["Custom LED hardware assembly.", "Custom graphics mapping."],
-    presentation: [ "images/project_smart_bag/bagpack.pdf" ]
+    pdf: "images/project_smart_bag/bagpack.pdf"
   },
   
   // ================= NEW PROJECTS ADDED =================
