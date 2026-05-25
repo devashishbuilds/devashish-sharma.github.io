@@ -357,7 +357,7 @@ const portfolioData = {
       "Extended actuator characterization work — refining test procedures for torque behaviour and load response based on prior experimental findings.",
       "Tools & Skills: Python, MATLAB, ROS, Sensor & Actuator Integration, Data Logging & Visualization, Repeatability Analysis, Root-Cause Troubleshooting."
     ], 
-    presentation: ["images/exp/sn1.png","images/exp/sn2.png","images/exp/sn3.png","images/exp/sn4.png","images/exp/sn5.png","images/exp/sn6.png","images/exp/sn7.png","images/exp/sn8.png"] 
+    presentation: ["images/exp/sn1.png","images/exp/sn2.png","images/exp/sn3.png","images/exp/sn4.png","images/exp/sn5.png","images/exp/sn6.png","images/exp/sn7.jpg","images/exp/sn8.jpg"] 
   },
   
   "bologna-edu": { 
@@ -383,7 +383,7 @@ const portfolioData = {
       "Implemented and verified control algorithms in TwinCAT (Beckhoff) for closed-loop system verification on the test bench.",
       "Tools & Skills: TwinCAT (Beckhoff), SolidWorks, FDM 3D Printing, Sensor Calibration, Electromechanical Characterization, Test Documentation."
     ], 
-    presentation: ["images/exp/power_flow.png","images/exp/HD_Tsensor_couple_1.jpg", "images/exp/tq_sesnor_holder_1.jpg", "images/exp/HD_tor.png" ] 
+    presentation: ["images/exp/power_flow.png","images/exp/EL3356 module.PNG","images/exp/HD_Tsensor_couple_1.jpg", "images/exp/tq_sesnor_holder_1.jpg", "images/exp/HD_tor.png" ] 
   },  
   // Project Data
   "snake": {
