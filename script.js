@@ -436,6 +436,21 @@ const portfolioData = {
 
     pdf: "images/project_smart_bag/bagpack.pdf"
   },
+
+  "palletizer": {
+    title: "MultiBox Palletizer",
+    subtitle: "Automated Multi-Layer Palletizing System",
+    summary: "An automated palletizing machine composed of three coordinated units: a feeder, a crane, and a pallet handler, that builds complete pallets of stacked boxes with alternating layer orientations and interleaved cardboard sheets for stable, repeatable stacking.",
+    bullets: ["Developed in the B&R environment using Automation Studio, with PLC logic written in Structured Text (ST).", "Simulation task: driving the machine to full operation against the provided machine model in Industrial Physics.", "Tools & Skills: B&R Automation Studio, Structured Text (IEC 61131-3), Industrial Physics, Virtual Commissioning."],
+    presentation: [ "images/project_palletizer/palletizer.png" ]
+  },
+  "tiago-nav": {
+    title: "Autonomous Mobile Manipulation (TIAGo)",
+    subtitle: "SLAM Mapping, Navigation & Pick-and-Place in ROS 2",
+    summary: "A ROS 2 mobile-manipulation project on the TIAGo robot covering the full autonomy stack: building a map of the environment with SLAM, localizing and navigating from a random start pose, and performing an ArUco-guided pick-and-place sequence on tagged cubes.",
+    bullets: ["Task 1: Map Generation", "Autonomous exploration of the full scenario using the Nav2 SLAM stack, with the generated map saved via the Nav2 map server.", "Task 2: Navigation", "Navigation on the saved map from a random initial pose, with AMCL-based localization and alignment verified through the amcl_pose topic.", "Autonomous discovery and navigation to pick (ArUco ID 26) and place (ArUco ID 238) locations using markers on the object sides.", "Task 3: Pick and Place", "Sequenced transport of ArUco-tagged cubes from pick to place, following the order ID 63 then ID 582 (7 cm cubes, 7 cm markers).", "Tools & Skills: ROS 2, Nav2, SLAM, AMCL Localization, ArUco Marker Detection."],
+    presentation: [ "images/project_tiago/tiago_nav.png" ]
+  },
   
   // ================= NEW PROJECTS ADDED =================
   "desk-manipulator": {
